@@ -1,0 +1,780 @@
+
+===== UserPage.master =====
+ 1160: <asp:HiddenField runat="server" ID="hidden_AccountType" Value="0" />
+ 1161: <asp:HiddenField runat="server" ID="hidden_expiration_on" Value="0" />
+ 1162: <asp:HiddenField runat="server" ID="hidden_kitting_on" Value="0" />
+ 1194: <asp:Button runat="server" ID="BTN_LOGOUT" Text="Button" Style="display: none;" />
+ 1210: <div id="tarp_locationSelector" class="hidden" onclick="HideLocationPicker()" style="pointer-events: all!important"></div>
+ 1227: <img class="logo-img" src="Images/Logo/round 2020.png" alt="Logo" width="40" height="40" style="cursor: pointer; z-index: 1001; padding-right: 10px;" onclick="return userPageHeaderLogoNavigate();" />
+ 1233: <button type="button" class="navbar-hamburger mobile-header-menu-hit" aria-label="Open menu" aria-expanded="false" aria-controls="navbar-collapse-panel" id="navbar-hamburger-btn">
+ 1240: <nav class="navbar-collapse-menu mobile-header-menu-dropdown" aria-label="Mobile menu">
+ 1242: <button type="button" class="mobile-header-menu-close" aria-label="Collapse menu" onclick="document.getElementById('navbar-hamburger-btn').click(); return false;">
+ 1254: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='MOBILE_main'; return false;"><span class="collapse-menu-icon collapse-menu-icon--home"></span>Home</a>
+ 1259: <a class="collapse-menu-link" href="#" onclick="simpleRedirect('Map'); return false;"><span class="collapse-menu-icon collapse-menu-icon--map"></span>Map</a>
+ 1260: <button type="button" id="collapseMenuMapSettingsToggle" class="collapse-menu-map-settings-toggle" aria-expanded="false" aria-controls="collapseMenuMapSettingsPanel" aria-label="Map options">
+ 1269: <input type="checkbox" id="collapseMenuMapLockSwitch" role="switch" aria-labelledby="collapseMenuMapLockLabel" disabled>
+ 1277: <input type="checkbox" id="collapseMenuAbcSortSwitch" role="switch" aria-labelledby="collapseMenuAbcSortLabel" disabled>
+ 1282: <button type="button" class="collapse-menu-shared-maps-toggle" aria-expanded="false" aria-controls="collapseMenuSharedMapsList">
+ 1286: <ul id="collapseMenuSharedMapsList" class="collapse-menu-shared-maps-list" hidden aria-label="Shared maps"></ul>
+ 1290: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); simpleRedirect('Products?clear=true'); return false;"><span class="collapse-menu-icon collapse-menu-icon--products"></span>Products</a>
+ 1291: <a id="collapse-menu-expiration" class="collapse-menu-link" href="#" style="display: none;" onclick="ShowTarpLoader(); simpleRedirect('Expirations'); return false;"><span class="collapse-menu-icon collapse-menu-icon--expiration"></span>Expi
+ 1292: <a class="collapse-menu-link" href="#" onclick="simpleRedirect('ActivityHistory'); return false;"><span class="collapse-menu-icon collapse-menu-icon--activity"></span>Activity</a>
+ 1296: <a class="collapse-menu-link" href="#" onclick="return mapMobilePrimeInventoryFlow('CHECK_IN', '');"><span class="collapse-menu-icon collapse-menu-icon--checkin"></span>Check In</a>
+ 1297: <a class="collapse-menu-link" href="#" onclick="return mapMobilePrimeInventoryFlow('CHECK_OUT', '');"><span class="collapse-menu-icon collapse-menu-icon--checkout"></span>Check Out</a>
+ 1298: <a class="collapse-menu-link" href="#" onclick="return mapMobilePrimeInventoryFlow('TRANSFER', '');"><span class="collapse-menu-icon collapse-menu-icon--transfer"></span>Transfer</a>
+ 1307: <input type="checkbox" id="collapseMenuTabletModeSwitch" role="switch" aria-labelledby="collapseMenuTabletModeLabel">
+ 1311: <a class="collapse-menu-link" href="#" onclick="if(typeof groove !== 'undefined' && groove.widget) groove.widget.open(); return false;"><span class="collapse-menu-icon collapse-menu-icon--help"></span>Help</a>
+ 1312: <a class="collapse-menu-link" href="#" onclick="simpleRedirect('Settings'); return false;"><span class="collapse-menu-icon collapse-menu-icon--settings"></span>Settings</a>
+ 1313: <a class="collapse-menu-link" href="#" onclick="LogOut(); return false;"><span class="collapse-menu-icon collapse-menu-icon--logout"></span>Logout</a>
+ 1323: <div class="menu-tab-popup" id="menu_tab_start" runat="server" onmousemove="showQuickStart()" onmouseout="hideQuickStart()" onclick="simpleRedirect('Start')">
+ 1337: <div id="QuickStart" class="quickPopup large-menu" style="display: none; cursor: default;" onclick="event.stopPropagation();">
+ 1338: <img src="Images/Pages/Masterpage/checkin.png" class="PopupImg" onclick="javascript: ShowTarpLoader(); document.location = '/Start?checkin=true&id=-2'" />
+ 1340: <img src="Images/Pages/Masterpage/transfer.png" class="PopupImg" onclick="javascript: ShowTarpLoader(); document.location = '/Start?transfer=true&id=-2'" />
+ 1342: <img src="Images/Pages/Masterpage/checkout.png" class="PopupImg" onclick="javascript: ShowTarpLoader(); document.location = '/Start?checkout=true&id=-2'" />
+ 1345: <div class="menu-tab" id="menu_tab_map" runat="server" onclick="simpleRedirect('Map')">
+ 1375: <div id="productMenu" class="quickPopup large-menu" style="display: none; cursor: default;" onclick="event.preventDefault();">
+ 1376: <img src="Images/Pages/Masterpage/view.png" class="PopupImg" onclick="javascript: simpleRedirect('Products?clear=true');" />
+ 1383: <img id="expiration_icon" src="Images/Pages/Masterpage/expirations.png" class="PopupImg" onclick="simpleRedirect('Expirations')" />
+ 1384: <img id="kitting_icon" src="Images/Pages/Masterpage/kitting.png" class="PopupImg" onclick="simpleRedirect('Kitting')" />
+ 1390: <div class="icon-activity icon large-menu nav-icon-svg" onclick="simpleRedirect('ActivityHistory')"></div>
+ 1396: <a href="/ActivityHistory" class="btn-green activity-popup-view-btn" style="text-decoration: none; color: inherit; cursor: pointer;" onclick="ShowTarpLoader(); window.location.href='/ActivityHistory'; return false;">View Activity History</a
+ 1416: <tr style="opacity: 0.6;" onmousemove="this.style.opacity = 1" onmouseout="this.style.opacity = 0.6" onclick="simpleRedirect('Settings')">
+ 1425: <li class="nav-popup-item"><a class="nav-popup-link" href="#" onclick="window.location.href='MOBILE_main'; return false;"><span class="nav-popup-tools-icon nav-popup-tools-icon--mobile"></span>Mobile Web</a></li>
+ 1434: <tr style="opacity: 0.6;" onmousemove="this.style.opacity = 1" onmouseout="this.style.opacity = 0.6" onclick="LogOut();">
+ 1452: <li class="nav-popup-item"><a class="nav-popup-link" href="#" onclick="window.location.href='MOBILE_main'; return false;"><span class="nav-popup-tools-icon nav-popup-tools-icon--mobile"></span>Mobile Web</a></li>
+ 1458: <input type="checkbox" id="videos-expand-toggle" class="nav-popup-help-videos-toggle" aria-hidden="true">
+ 1480: <li class="nav-popup-item"><a role="button" href="#" class="nav-popup-link nav-popup-link--primary" onclick="groove.widget.open(); return false;">Search Topics<span class="nav-popup-help-icon-search"></span></a></li>
+ 1481: <li class="nav-popup-item"><a role="button" href="#" class="nav-popup-link nav-popup-link--complement" onclick="groove.widget.open(); return false;">Email Support<span class="nav-popup-help-icon-email"></span></a></li>
+ 1500: <div class="user-page-mobile-modal__sheet" role="dialog" aria-modal="true" aria-label="Popup">
+ 1501: <button type="button" class="user-page-mobile-modal__close" title="Close" aria-label="Close">&times;</button>
+ 1503: <div class="user-page-mobile-modal__loading-spinner" role="status" aria-label="Loading"></div>
+ 1506: <iframe class="user-page-mobile-modal__frame" title="Content" src="about:blank" scrolling="yes"></iframe>
+
+===== MOBILE_MasterPage.master =====
+  950: <asp:HiddenField runat="server" ID="hidden_AccountType" Value="0" />
+  951: <asp:HiddenField runat="server" ID="hidden_MobileQuickScanPage" Value="0" />
+  952: <asp:HiddenField runat="server" ID="hidden_MobileTransferPage" Value="0" />
+  971: <a href="#" id="mobileHeaderMenuButton" class="mobile-header-menu-hit" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileHeaderMenu(event); return false;">
+  976: <div id="mobileHeaderMenuOverlay" class="mobile-header-menu-overlay" onclick="closeMobileHeaderMenu();"></div>
+  977: <nav id="mobileHeaderMenuDropdown" class="mobile-header-menu-dropdown" aria-label="Mobile menu">
+  979: <button type="button" class="mobile-header-menu-close" aria-label="Collapse menu" onclick="closeMobileHeaderMenu(); return false;">
+  992: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='MOBILE_main'; return false;"><span class="collapse-menu-icon collapse-menu-icon--home"></span>Home</a>
+  996: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='Map'; return false;"><span class="collapse-menu-icon collapse-menu-icon--map"></span>Map</a>
+  997: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='Products?clear=true'; return false;"><span class="collapse-menu-icon collapse-menu-icon--products"></span>Products</a>
+  998: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='ActivityHistory'; return false;"><span class="collapse-menu-icon collapse-menu-icon--activity"></span>Activity</a>
+ 1003: <a class="collapse-menu-link" href="#" onclick="window.mobileHeaderPrimeInventoryFlow('CHECK_IN',''); return false;"><span class="collapse-menu-icon collapse-menu-icon--checkin"></span>Check In</a>
+ 1004: <a class="collapse-menu-link" href="#" onclick="window.mobileHeaderPrimeInventoryFlow('CHECK_OUT',''); return false;"><span class="collapse-menu-icon collapse-menu-icon--checkout"></span>Check Out</a>
+ 1005: <a class="collapse-menu-link" href="#" onclick="window.mobileHeaderPrimeInventoryFlow('TRANSFER',''); return false;"><span class="collapse-menu-icon collapse-menu-icon--transfer"></span>Transfer</a>
+ 1007: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='MOBILE_QuickScan.aspx'; return false;"><span class="collapse-menu-icon collapse-menu-icon--barcode"></span>QuickScan</a>
+ 1011: <a class="collapse-menu-link" href="#" onclick="if(typeof groove !== 'undefined' && groove.widget){groove.widget.open();} return false;"><span class="collapse-menu-icon collapse-menu-icon--help"></span>Help</a>
+ 1012: <a class="collapse-menu-link" href="#" onclick="ShowTarpLoader(); window.location.href='Settings'; return false;"><span class="collapse-menu-icon collapse-menu-icon--settings"></span>Settings</a>
+ 1013: <a class="collapse-menu-link" href="#" onclick="window.mobileHeaderLogout(); return false;"><span class="collapse-menu-icon collapse-menu-icon--logout"></span>Logout</a>
+ 1025: <input id="mobileHeaderSearchInput" class="mobile-header-search-input" type="text" placeholder="Search or scan" autocomplete="off" />
+ 1028: <asp:Literal runat="server" ID="lit_mobile_header_brand" Text="CS Mobile" />
+ 1032: <a href="#" class="mobile-header-right-hit" onclick="ToggleActivity(); return false;" aria-label="Activity history">
+ 1037: <a href="#" id="link_mobile_header_camera" class="mobile-header-right-hit mobile-header-camera-hit" onclick="csMobileCameraScanMaybeOpen(event); return false;" aria-label="Scan with camera" aria-disabled="true">
+ 1115: <button type="button" id="mobileCameraScanModeOverlay" class="mobile-camera-mode-btn" aria-label="Scan mode: Auto" aria-pressed="true" onclick="event.stopPropagation(); window.mobileCameraScanModeToggle('overlay'); return false;">Auto</butt
+ 1122: <button type="button" id="mobileCameraTorchOverlay" class="mobile-camera-torch-btn mobile-camera-scan-btn" aria-label="Toggle flashlight" aria-pressed="false" onclick="event.stopPropagation(); window.mobileCameraTorchToggle('overlay'); retu
+ 1123: <button type="button" class="mobile-camera-scan-btn mobile-camera-scan-btn--cancel" onclick="csMobileCameraScanCancel(); return false;">Cancel</button>
+ 1135: <button type="button" id="mobileCameraScanModeDock" class="mobile-camera-mode-btn" aria-label="Scan mode: Auto" aria-pressed="true" onclick="event.stopPropagation(); window.mobileCameraScanModeToggle('dock'); return false;">Auto</button>
+ 1137: <button type="button" id="mobileCameraTorchDock" class="mobile-camera-torch-btn" aria-label="Toggle flashlight" aria-pressed="false" onclick="event.stopPropagation(); window.mobileCameraTorchToggle('dock'); return false;">&#128294;</button>
+ 3136: <div class="user-page-mobile-modal__sheet" role="dialog" aria-modal="true" aria-label="Transfer">
+ 3137: <button type="button" class="user-page-mobile-modal__close" title="Close" aria-label="Close">&times;</button>
+ 3139: <div class="user-page-mobile-modal__loading-spinner" role="status" aria-label="Loading"></div>
+ 3142: <iframe class="user-page-mobile-modal__frame" title="Transfer" src="about:blank" scrolling="yes"></iframe>
+
+===== Settings.aspx =====
+    1: <%@ Page Title="Settings (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Settings.aspx.vb" Inherits="Settings" MaintainScrollPositionOnPostback="true" %>
+   37: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" ClientIDMode="Static" />
+   38: <asp:HiddenField runat="server" ID="HIDDEN_GoogleToken" />
+   39: <asp:HiddenField runat="server" ID="hidden_users" ClientIDMode="Static" />
+   40: <asp:HiddenField runat="server" ID="hidden_custom_fields" ClientIDMode="Static" />
+   41: <asp:HiddenField runat="server" ID="hidden_custom_fields_default" ClientIDMode="Static" />
+   42: <asp:HiddenField runat="server" ID="hidden_custom_fields_personalized" ClientIDMode="Static" />
+   43: <asp:HiddenField runat="server" ID="hidden_personalized_sort_enabled" ClientIDMode="Static" Value="0" />
+   44: <asp:HiddenField runat="server" ID="hidden_custom_fields_can_edit" ClientIDMode="Static" Value="0" />
+   45: <asp:HiddenField runat="server" ID="hidden_api_keys" ClientIDMode="Static" />
+   46: <asp:HiddenField runat="server" ID="hidden_subscription" ClientIDMode="Static" />
+   55: <img onclick="goToAnchor('profile')" class="settings-icon" src="Images/Icons/Pages/Settings/team.png" title="Profile & Team" /><br />
+   61: <img onclick="goToAnchor('fields')" class="settings-icon" src="Images/Icons/Pages/Settings/fields.png" title="Custom Fields" /><br />
+   67: <img onclick="goToAnchor('DefaultLocations')" class="settings-icon" src="Images/Icons/Pages/Settings/locations.png" title="Default Locations" /><br />
+   73: <img onclick="goToAnchor('integrations')" class="settings-icon" src="Images/Icons/Pages/Settings/integrations.png" title="Integrations" /><br />
+   79: <img onclick="goToAnchor('generalSettings')" class="settings-icon" src="Images/Icons/Pages/Settings/settings.png" title="Options" /><br />
+   85: <img onclick="goToAnchor('subscription')" class="settings-icon" src="Images/Icons/Pages/Settings/plan.png" title="Subscription Plan" /><br />
+  133: <input type="text" runat="server" id="txt_profile_user_name" class="text-input text-input-settings-page" onfocus="UI_TI_RememberValue(this)" onkeydown="return UI_TI_toggleUnsaved(this, event)" onchange="updateUserName(this);" autocomplete="
+  143: <asp:Button ID="noop_profile" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  150: <label id="lbl_password_instruction" runat="server" class="password-instruction" onclick="ShowPasswordField()"><b>Update Your Password</b></label>
+  153: <asp:Label runat="server" ID="lbl_error_password" Text="" CssClass="password-error" Style="display: none;"></asp:Label>
+  157: <asp:TextBox runat="server" TextMode="Password" ID="txt_OldPassword" placeholder="Old Password" CssClass="password-field"></asp:TextBox>
+  159: <asp:TextBox runat="server" TextMode="Password" ID="txt_password_1" ClientIDMode="Static" placeholder="New Password" CssClass="password-field"></asp:TextBox>
+  161: <asp:TextBox runat="server" TextMode="Password" ID="txt_password_2" placeholder="Repeat Password" CssClass="password-field"></asp:TextBox>
+  163: <button onclick="document.getElementById('div-reset-password').style.display='none'; return false;" class="btn-password" style="background-color: #AF5756">Cancel</button>
+  164: <asp:Button runat="server" ID="btn_password_reset" Text="Save" OnClientClick="ShowTarpLoader()" CssClass="btn-password" />
+  184: <asp:Button runat="server" ID="btnGoogleLogin" Text="Google Login" Style="display: none" />
+  189: <div class="g-signin2" data-width="300" data-longtitle="true" data-theme="dark" data-onsuccess="onSignIn"></div>
+  217: <input type="text" id="user-search" placeholder="Search by name or email..."
+  226: <button class="role-filter-pill" data-role="ADMIN" onclick="toggleRoleFilter('ADMIN'); return false;">Admin</button>
+  227: <button class="role-filter-pill" data-role="USER" onclick="toggleRoleFilter('USER'); return false;">User</button>
+  228: <button class="role-filter-pill" data-role="READ-ONLY" onclick="toggleRoleFilter('READ-ONLY'); return false;">Read-Only</button>
+  232: <asp:Button ID="noop_users" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  242: <asp:Button ID="btn_noop_invitation" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  248: <input type="text" id="invite-email" class="text-input-invitation" placeholder="example@company.com" autocomplete="off" />
+  259: <button id="btn_send_invite" class="invite-btn" onclick="sendInvitation(); return false;">Send Invitation</button>
+  290: <asp:Button ID="noop_customFields" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  293: <input type="checkbox" id="toggle_personalized_sort" onchange="handlePersonalizedSortToggle(this)" />
+  401: <asp:Button runat="server" ID="btn_lansweeper_SYNC" CssClass="lansweeper-sync" Text="Synchronize" OnClientClick="ShowTarp(); alert('The Synchronization request has been sent.');" />
+  407: <asp:Button runat="server" ID="btn_lansweeper_Disconnect" Style="opacity: 0.5!important" CssClass="lansweeper-disconnect" OnClientClick="return disconnectConfirmation();" Text="Disconnect Lansweeper" ToolTip="Disconnect Lansweeper Integrati
+  439: <asp:CheckBox ID="toggle_share_map_layout" runat="server" ClientIDMode="Static" />
+  456: <asp:CheckBox ID="toggle_show_product_images" runat="server" ClientIDMode="Static" />
+  473: <asp:CheckBox ID="toggle_show_zero_quantity_products" runat="server" ClientIDMode="Static" />
+  491: <asp:CheckBox ID="toggle_show_expirations" runat="server" ClientIDMode="Static" />
+  500: <asp:CheckBox ID="toggle_expiring_soon" runat="server" ClientIDMode="Static" />
+  516: <button type="button" id="btn_save_expiring_soon" style="display: none; padding: 10px 20px; background: linear-gradient(145deg, #00B050, #388e3c); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight
+  532: <asp:CheckBox ID="toggle_show_kitting" runat="server" AutoPostBack="true" />
+  549: <asp:CheckBox ID="toggle_general_threshold" runat="server" ClientIDMode="Static" />
+  560: <asp:Button ID="noop_threshold" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  561: <asp:TextBox runat="server" ID="txt_generalThreshold" ClientIDMode="Static" Style="padding: 10px 12px; width: 80px; border: 1px solid #e2e5eb; border-radius: 8px; text-align: center; font-size: 14px; background: #fafbfc;" Enabled="false">1<
+  562: <button type="button" id="btn_save_generalThreshold" style="display: none; padding: 10px 20px; background: linear-gradient(145deg, #00B050, #388e3c); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-wei
+  571: <asp:CheckBox ID="toggle_max_highlight" runat="server" ClientIDMode="Static" />
+  581: <asp:Button ID="noop_max_highlight" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  582: <asp:TextBox runat="server" ID="txt_maxHighlight" ClientIDMode="Static" Style="padding: 10px 12px; width: 80px; border: 1px solid #e2e5eb; border-radius: 8px; text-align: center; font-size: 14px; background: #fafbfc;" Enabled="false">10</as
+  583: <button type="button" id="btn_save_maxHighlight" style="display: none; padding: 10px 20px; background: linear-gradient(145deg, #00B050, #388e3c); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight:
+  630: <asp:DropDownList runat="server" ID="drp_down_timezone" ClientIDMode="Static" Style="padding: 10px 32px 10px 12px; border: 1px solid #e2e5eb; border-radius: 8px; font-size: 14px; background: #fafbfc; color: #454545; min-width: 350px; cursor
+  658: </asp:DropDownList>
+  668: <asp:Button ID="noop_currency" runat="server" Text="" UseSubmitBehavior="false" OnClientClick="return false;" Style="display: none" />
+  674: <asp:TextBox runat="server" ID="txt_currency" ClientIDMode="Static" Style="padding: 10px 12px; width: 100px; border: 1px solid #e2e5eb; border-radius: 8px; text-align: center; font-size: 14px; background: #fafbfc;">$</asp:TextBox>
+  675: <button type="button" id="btn_currency" style="padding: 10px 20px; background: linear-gradient(145deg, #00B050, #388e3c); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.
+
+===== Products.aspx =====
+    1: <%@ Page Title="Products (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Products.aspx.vb" Inherits="Products"  %>
+  444: <asp:HiddenField ID="hidden_SELECT_ALL" runat="server" Value="0" />
+  445: <asp:HiddenField ID="hidden_SELECT_ALL_COMPLETE" runat="server" Value="0" />
+  446: <asp:HiddenField ID="hidden_PageSize" runat="server" Value="0" />
+  447: <asp:HiddenField ID="hidden_FullCount" runat="server" Value="0" />
+  448: <asp:HiddenField ID="hidden_HasPagination" runat="server" Value="0" />
+  449: <asp:HiddenField ID="hidden_PageIndex" runat="server" Value="0" />
+  450: <asp:HiddenField ID="hidden_SortExpression" runat="server" Value="DEFAULT" />
+  451: <asp:HiddenField ID="hidden_SortDirection" runat="server" Value="0" />
+  504: <asp:ImageButton ID="btn_Add" runat="server" CssClass="products-add clickable" Text="Select Columns" ToolTip="Add one or more products to your inventory" ImageUrl="~/Images/Pages/Products/Add.png" />
+  513: <asp:ImageButton ID="btn_delete" runat="server" CssClass="products-delete hidden-btn clickable" Text="Delelete Products" ToolTip="Delete selected products from your inventory." OnClientClick="return DeleteConfirmation();" Style="opacity: 0.
+  523: <asp:ImageButton OnClientClick="MultiEditDropdownShow(); return false;" ID="btn_MultiEdit" runat="server" CssClass="products-edit hidden-btn clickable" Text="Select Columns" ToolTip="Multi-Edit: Change all of the selected items at once" Ima
+  536: SET&nbsp;&nbsp;<asp:DropDownList ID="drpdown_Multiedit_Field" runat="server" CssClass="Theme dropdown" Style="font-family: 'Century Gothic';" Height="38px" Width="25%"></asp:DropDownList>
+  537: &nbsp;&nbsp; TO &nbsp;&nbsp;<asp:TextBox ID="txt_MultiEdit_Value" runat="server" CssClass="Theme textarea_formatted" Style="font-family: 'Century Gothic';" Height="30px" Width="25%"></asp:TextBox>
+  538: &nbsp;&nbsp;<asp:Button ID="btn_MultiEdit_UPDATE" runat="server" Text="Update" CssClass="Theme button OK" Height="38px" OnClientClick="ShowTarpLoader();" />
+  540: <button onclick="MultiEditDropdownShow(); return false;" class="Theme button CANCEL">Cancel</button>
+  565: <%--<asp:ImageButton ID="BTN_FieldSelector" runat="server" CssClass="clickable control-btn" ImageUrl="~/Images/icons/Columns.png" Text="Select Columns" ToolTip="Select the columns to display in your inventory" />--%>
+  570: <img id="btn_columns" class="products-columns clickable" title="Select the columns to display in your inventory" src="Images/Pages/Products/Columns.png" />
+  600: <button type="button" class="column-save column-edit" onclick="if (typeof ColumnsDropdownHide === 'function') { ColumnsDropdownHide(); } openCustomFieldEditor(); return false;">EDIT COLUMNS</button>
+  602: <asp:Button ID="btn_AdjustColumns" CssClass="column-save" Text="SAVE COLUMNS" runat="server" />
+  608: <%--<button onclick="SaveColumnOrder();">save</button>--%>
+  662: <asp:ImageButton ID="btn_export_report" runat="server" CssClass="clickable" ImageUrl="Images/Pages/Products/download.png" ToolTip="Download Product Report" />
+  671: <asp:ImageButton ID="btn_print_barcodes" runat="server" CssClass="products-print-barcodes print-barcodes-hidden clickable" Height="38" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" ToolTip="Print barcodes for selected products" />
+  681: <asp:ImageButton ID="btn_image_toggle" runat="server" CssClass="products-hide clickable" Text="Hide Product Images" ToolTip="Hide Product Images" />
+  834: <asp:GridView ID="gridview" runat="server" EnableViewState="true" class="gridview-styling" AllowSorting="true" AllowPaging="true" AllowCustomPaging="true" PagerSettings-FirstPageImageUrl="~/Images/Stockroom/first.png" PagerSettings-LastPage
+  844: <asp:TemplateField HeaderText="Delete">
+  846: <asp:CheckBox ID="SelectAll" runat="server" CommandName="Select_All"
+  847: onclick="javascript:SelectAllCheckboxes1(this); " />
+  850: <asp:CheckBox ID="CheckBox1" runat="server" OnClick="EnableHiddenButtons(this.checked); return true;" />
+  854: <asp:ImageButton ID="BtnUpdate" Width="25px" runat="server" CommandName="Update" Text="Save"
+  871: <asp:Button ID="BTN_HIDDEN" runat="server" CssClass="btn_hidden" />
+  877: <asp:Label ID="message" runat="server" Text="Label" Visible="False"></asp:Label>
+  891: <img class="clickable" src="Images/Pages/Products/printable.png" title="pritnable version" onclick="window.open('/Products?printable=true')" />
+  902: <div id="tarp_MultiEdit" class="hidden" onclick="MultiEditDropdownShow();"></div>
+  906: <asp:Button ID="HiddenBtn" runat="server" Text="Apply Check Fields" />
+  907: <asp:Button ID="HiddenBtn2" runat="server" Text="Apply Custom Properties" />
+  908: <asp:Button ID="HiddenBtn_LOCATION" runat="server" Text=" Load Stockroom " />
+  918: <asp:Button ID="FORCE_CUSTOM_SEARCH" runat="server" CssClass="hidden" Text="IIII" />
+  919: <asp:Button ID="FORCE_CLEAR_FILTER" runat="server" CssClass="hidden" Text="IIII" />
+ 1233: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "The " + hidden_PageSize + " Products on this page are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='select_all
+ 1259: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "All " + hidden_Fullcount + " Products in your inventory are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='sele
+ 1263: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "The " + hidden_PageSize + " Products on this page are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='select_all
+
+===== ProductEditor.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ProductEditor.aspx.vb" Inherits="ProductEditor" %>
+  386: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+  387: <asp:HiddenField ID="expirations_on_hidden" runat="server" Value="0" />
+  388: <asp:HiddenField ID="productUID_hidden" runat="server" Value="" />
+  389: <asp:HiddenField ID="multi_edit_value_other" runat="server" Value="" />
+  390: <asp:HiddenField ID="auto_sku_identifier" runat="server" Value="" />
+  391: <asp:HiddenField ID="HF_clone_field_meta" runat="server" Value="" />
+  392: <asp:HiddenField ID="HF_clone_new_uid" runat="server" Value="" />
+  393: <asp:HiddenField ID="HF_clone_auto_sku" runat="server" Value="1" />
+  394: <asp:HiddenField ID="HF_clone_product_name" runat="server" Value="" />
+  395: <asp:HiddenField ID="HF_clone_buy_price" runat="server" Value="" />
+  396: <asp:HiddenField ID="HF_clone_sell_price" runat="server" Value="" />
+  397: <asp:HiddenField ID="HF_clone_expiration" runat="server" Value="" />
+  398: <asp:HiddenField ID="HF_clone_custom_fields_json" runat="server" Value="" />
+  399: <asp:HiddenField ID="HF_show_cloned_badge" runat="server" Value="0" />
+  400: <asp:Button ID="btn_clone_product" runat="server" Style="display: none;" />
+  403: <div class="product-editor-other-modal__backdrop" onclick="closeDeleteProductModal()"></div>
+  409: <button type="button" id="product_editor_delete_cancel" class="product-editor-other-modal__btn product-editor-other-modal__btn--cancel" onclick="closeDeleteProductModal()">Cancel</button>
+  410: <button type="button" class="product-editor-other-modal__btn product-editor-other-modal__btn--delete" onclick="confirmDeleteProduct()">Delete</button>
+  416: <div class="product-editor-other-modal__backdrop" onclick="cancelOtherSpecifyModal()"></div>
+  421: <button type="button" class="product-editor-other-modal__btn product-editor-other-modal__btn--cancel" onclick="cancelOtherSpecifyModal()">Cancel</button>
+  422: <button type="button" class="product-editor-other-modal__btn product-editor-other-modal__btn--save" onclick="saveOtherSpecifyModal()">Save</button>
+  428: <div class="product-editor-clone-modal__backdrop" onclick="ProductEditorClone.cancel()"></div>
+  436: <input id="pe_clone_auto_sku" type="checkbox" checked="checked" onchange="ProductEditorClone.toggleAutoSku()" />
+  452: <button type="button" class="product-editor-clone-modal__btn product-editor-clone-modal__btn--cancel" onclick="ProductEditorClone.cancel()">Cancel</button>
+  453: <button type="button" class="product-editor-clone-modal__btn product-editor-clone-modal__btn--clone" onclick="ProductEditorClone.submit()">Clone</button>
+  458: <asp:Button ID="btn_upload_image" runat="server" Style="display: none;" />
+  459: <asp:Button ID="btn_upload_attachment" runat="server" Style="display: none;" />
+  473: <button type="button" class="pe-clone-trigger" title="clone this product" aria-label="clone this product" onclick="ProductEditorClone.open()">
+  487: <input type="image" id="img_thumbnail_html" class="thumbnail_image" title="Click to update image..." onclick="ForceFileUpload(); return false" runat="server" src="/Images/Icons/cam_small.png" style="outline: none;" />
+  522: <input type="image" id="img_attachment" class="attachment-icon" title="Click to attach file..." onclick="UploadAttachment(); return false" runat="server" src="/Images/Icons/attachment.png" style="outline: none; height: 50px;" />
+  525: <asp:ImageButton runat="server" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" Style="height: 40px;" CssClass="button" ToolTip="Print Barcodes" OnClientClick=" return false;" />
+  791: <%--  <button class="Theme button" style="padding: 8px 25px; background-color:#454545; width:150px;" title="Clone Product" onclick="CloneProduct();">Clone Product</button>
+  797: <a href="#" class="edit-your-fields-link" onclick="openCustomFieldEditor(); return false;">Edit your fields</a>
+  801: <asp:Button runat="server" ID="btn_delete2" CssClass="pe-delete-product" Text="" ToolTip="Delete this product" aria-label="Delete this product" OnClientClick="return DeleteConfirmation()"></asp:Button>
+  818: <span id="peDetailsToggleTab" class="pe-details-toggle-tab pe-details-toggle-tab--collapsed" role="button" tabindex="0" aria-expanded="false" aria-controls="div_product_details" aria-label="Show details"></span>
+  823: <button type="button" class="pe-clone-trigger" title="clone this product" aria-label="clone this product" onclick="ProductEditorClone.open()">
+  856: <asp:HiddenField runat="server" ID="HF_CF_INDEX_LIST" />
+  857: <asp:HiddenField runat="server" ID="HF_TXT_INDEX_LIST" />
+
+===== Products_read_only.aspx =====
+    1: <%@ Page Title="Products (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Products_read_only.aspx.vb" Inherits="Products_read_only"  %>
+  193: <asp:HiddenField ID="hidden_SELECT_ALL" runat="server" Value="0" />
+  194: <asp:HiddenField ID="hidden_SELECT_ALL_COMPLETE" runat="server" Value="0" />
+  195: <asp:HiddenField ID="hidden_PageSize" runat="server" Value="0" />
+  196: <asp:HiddenField ID="hidden_FullCount" runat="server" Value="0" />
+  197: <asp:HiddenField ID="hidden_HasPagination" runat="server" Value="0" />
+  249: <%--<asp:ImageButton ID="BTN_FieldSelector" runat="server" CssClass="clickable control-btn" ImageUrl="~/Images/icons/Columns.png" Text="Select Columns" ToolTip="Select the columns to display in your inventory" />--%>
+  254: <img id="btn_columns" class="products-columns clickable" title="Select the columns to display in your inventory" src="Images/Pages/Products/Columns.png" />
+  283: <asp:Button ID="btn_AdjustColumns" CssClass="column-save" Text="SAVE COLUMNS" runat="server" />
+  289: <%--<button onclick="SaveColumnOrder();">save</button>--%>
+  343: <asp:ImageButton ID="btn_export_report" runat="server" CssClass="clickable" ImageUrl="Images/Pages/Products/download.png" ToolTip="Download Product Report" />
+  352: <asp:ImageButton ID="btn_print_barcodes" runat="server" CssClass="products-print-barcodes hidden-btn clickable" Height="38" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" ToolTip="Print barcodes for selected products" />
+  362: <asp:ImageButton ID="btn_image_toggle" runat="server" CssClass="products-hide clickable" Text="Hide Product Images" ToolTip="Hide Product Images" />
+  475: <asp:GridView ID="gridview" runat="server" EnableViewState="true" class="gridview-styling" AllowSorting="true" AllowPaging="true" AllowCustomPaging="true" PagerSettings-FirstPageImageUrl="~/Images/Stockroom/first.png" PagerSettings-LastPage
+  485: <asp:TemplateField HeaderText="Delete">
+  487: <asp:CheckBox ID="SelectAll" runat="server" CommandName="Select_All"
+  488: onclick="javascript:SelectAllCheckboxes1(this); " />
+  491: <asp:CheckBox ID="CheckBox1" runat="server" OnClick="EnableHiddenButtons(this.checked); return true;" />
+  509: <asp:Button ID="BTN_HIDDEN" runat="server" CssClass="btn_hidden" />
+  515: <asp:Label ID="message" runat="server" Text="Label" Visible="False"></asp:Label>
+  529: <img class="clickable" src="Images/Pages/Products/printable.png" title="pritnable version" onclick="window.open('/Products?printable=true')" />
+  540: <div id="tarp_MultiEdit" class="hidden" onclick="MultiEditDropdownShow();"></div>
+  544: <asp:Button ID="HiddenBtn" runat="server" Text="Apply Check Fields" />
+  545: <asp:Button ID="HiddenBtn2" runat="server" Text="Apply Custom Properties" />
+  546: <asp:Button ID="HiddenBtn_LOCATION" runat="server" Text=" Load Stockroom " />
+  556: <asp:Button ID="FORCE_CUSTOM_SEARCH" runat="server" CssClass="hidden" Text="IIII" />
+  557: <asp:Button ID="FORCE_CLEAR_FILTER" runat="server" CssClass="hidden" Text="IIII" />
+  866: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "The " + hidden_PageSize + " Products on this page are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='select_all
+  892: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "All " + hidden_Fullcount + " Products in your inventory are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='sele
+  896: document.getElementById("<%=lbl_Select_all_instructions.ClientID%>").innerHTML = "The " + hidden_PageSize + " Products on this page are selected. <span style='text-decoration:underline; cursor:pointer; font-weight:bold;' onclick='select_all
+
+===== ProductEditor_read_only.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ProductEditor_read_only.aspx.vb" Inherits="ProductEditor_read_only" %>
+   54: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   55: <asp:HiddenField ID="expirations_on_hidden" runat="server" Value="0" />
+   56: <asp:HiddenField ID="productUID_hidden" runat="server" Value="" />
+   57: <asp:HiddenField ID="multi_edit_value_other" runat="server" Value="" />
+   72: <input type="image" onclick="return false" id="img_thumbnail_html" class="thumbnail_image" runat="server" src="/Images/Icons/cam_small.png" style="outline: none; cursor:default" />
+  109: <asp:ImageButton runat="server" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" Style="height: 40px;" CssClass="button" ToolTip="Print Barcodes" OnClientClick=" return false;" />
+  287: <span id="peDetailsToggleTab" class="pe-details-toggle-tab pe-details-toggle-tab--collapsed" role="button" tabindex="0" aria-expanded="false" aria-controls="div_product_details" aria-label="Show details"></span>
+  319: <asp:HiddenField runat="server" ID="HF_CF_INDEX_LIST" />
+  320: <asp:HiddenField runat="server" ID="HF_TXT_INDEX_LIST" />
+
+===== Transfer.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="Transfer.aspx.vb" Inherits="Transfer" %>
+ 2138: htmlParts.push("<button type='button' id='import_inline_retry_btn' class='transfer-import-inline-retry'>Upload Corrected File</button>");
+ 2156: htmlParts.push("<button type='button' id='import_inline_retry_btn' class='transfer-import-inline-retry'>Upload Corrected File</button>");
+ 2160: htmlParts.push("<button type='button' id='import_inline_retry_btn' class='transfer-import-inline-retry'>Retry Import</button>");
+ 3459: <asp:HiddenField runat="server" ID="is_mobile_view_hidden" Value="0" />
+ 3460: <asp:HiddenField runat="server" ID="imported_transfer_items_hidden" Value="" />
+ 3461: <asp:HiddenField runat="server" ID="transfer_source_id_hidden" Value="" />
+ 3462: <asp:HiddenField runat="server" ID="transfer_destination_id_hidden" Value="" />
+ 3463: <asp:HiddenField runat="server" ID="transfer_map_filter_hidden" Value="" />
+ 3464: <asp:HiddenField runat="server" ID="imported_missing_count_hidden" Value="0" />
+ 3465: <asp:HiddenField runat="server" ID="imported_reduced_qty_count_hidden" Value="0" />
+ 3466: <asp:HiddenField runat="server" ID="import_status_hidden" Value="success" />
+ 3467: <asp:HiddenField runat="server" ID="imported_rows_count_hidden" Value="0" />
+ 3468: <asp:HiddenField runat="server" ID="imported_unknown_count_hidden" Value="0" />
+ 3469: <asp:HiddenField runat="server" ID="imported_not_at_location_count_hidden" Value="0" />
+ 3470: <asp:HiddenField runat="server" ID="imported_comma_skip_count_hidden" Value="0" />
+ 3471: <asp:HiddenField runat="server" ID="imported_unknown_products_hidden" Value="" />
+ 3472: <asp:HiddenField runat="server" ID="imported_not_at_location_products_hidden" Value="" />
+ 3473: <asp:HiddenField runat="server" ID="imported_skip_log_hidden" Value="" />
+ 3474: <asp:HiddenField runat="server" ID="is_checkout_hidden" Value="0" />
+ 3475: <asp:HiddenField runat="server" ID="is_checkin_hidden" Value="0" />
+ 3476: <asp:HiddenField runat="server" ID="transfer_infinite_qty_sentinel_hidden" Value="999999999" />
+ 3477: <asp:HiddenField runat="server" ID="is_import_return_hidden" Value="0" />
+ 3478: <asp:HiddenField runat="server" ID="created_checkin_items_hidden" Value="" />
+ 3479: <asp:HiddenField runat="server" ID="created_checkin_auto_sku_hidden" Value="" />
+ 4794: <div class="transfer-qty-modal__backdrop" onclick="transferQtyModalCancel()"></div>
+ 4801: <button type="button" class="transfer-qty-modal__btn" onclick="transferQtyModalCancel()">Cancel</button>
+ 4802: <button id="transfer_qty_modal_save_btn" type="button" class="transfer-qty-modal__btn transfer-qty-modal__btn--save" onclick="transferQtyModalSave()">Transfer</button>
+ 4808: <div class="transfer-comment-modal__backdrop" onclick="transferCommentModalConfirm()"></div>
+ 4813: <button id="transfer_comment_modal_btn" type="button" class="transfer-comment-modal__btn transfer-comment-modal__btn--skip" onclick="transferCommentModalConfirm()">Skip</button>
+ 4818: <div id="btn_save" class="btn-transfer-save" onclick="SaveAndClose()">SAVE</div>
+ 4820: <button type="button" class="import-review-action-btn import-review-action-btn--cancel" onclick="transferParentPopupClose()">Cancel</button>
+ 4821: <button id="transfer_primary_btn" type="button" class="import-review-action-btn import-review-action-btn--transfer" onclick="SaveAndClose()">Transfer</button>
+ 4824: <button type="button" class="import-review-action-btn import-review-action-btn--cancel" onclick="transferParentPopupClose()">Cancel</button>
+ 4825: <button id="import_review_save_btn" type="button" class="import-review-action-btn import-review-action-btn--checkout" onclick="SaveAndClose()">Save</button>
+ 4828: <button id="import_retry_btn" type="button" class="import-review-action-btn import-review-action-btn--checkout">Upload Corrected File</button>
+ 4833: <div class="transfer-add-product-modal__dialog" role="dialog" aria-modal="true" aria-label="Add new product">
+ 4834: <button id="transfer_add_product_modal_close" type="button" class="transfer-add-product-modal__close" title="Close" aria-label="Close">&times;</button>
+ 4835: <iframe id="transfer_add_product_frame" class="transfer-add-product-modal__frame" src="about:blank" title="Add Product"></iframe>
+
+===== Start.aspx =====
+    1: <%@ Page Title="Start (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Start.aspx.vb" Inherits="Start" %>
+    9: <asp:HiddenField runat="server" ID="ProductsInThisBatch" Value="" />
+   10: <asp:HiddenField runat="server" ID="ProductNamesInThisBatch" Value="" />
+   11: <asp:HiddenField runat="server" ID="QuantitiesInThisBatch" Value="" />
+   12: <asp:HiddenField runat="server" ID="Location1InThisBatch" Value="" />
+   13: <asp:HiddenField runat="server" ID="Location2InThisBatch" Value="" />
+   14: <asp:HiddenField runat="server" ID="numberOfProducts" Value="" />
+   16: <asp:HiddenField runat="server" ID="ItemIndex" Value="" />
+   17: <asp:HiddenField runat="server" ID="ADD_OR_CHECKOUT" Value="" />
+   23: <asp:Button runat="server" ID="DUMMY_BTN" OnClientClick="return false" Style="display: none" />
+   24: <asp:Button ID="btn_transfer_complete" runat="server" CssClass="hidden" Text="TRSF" />
+   97: <img src="Images/Pages/Start/2018/checkin.png" onclick="javascript:ProcessName = 'ADD';" class="main-menu-icons" />
+  103: <img src="Images/Pages/Start/2018/transfer.png" onclick="javascript:ProcessName = 'TRANSFER'" class="main-menu-icons" />
+  109: <img src="Images/Pages/Start/2018/checkout.png" onclick="javascript:ProcessName = 'CHECKOUT';" class="main-menu-icons" />
+  126: <asp:TextBox runat="server" ID="txt_comments" TextMode="MultiLine" CssClass="txt-comments"></asp:TextBox>
+  130: <asp:Button ID="btn_comment_save" runat="server" Text="Save Comment" OnClientClick="Cancel();" CssClass="btn-green" Style="margin-right: 10%;" Font-Size="90%" Width="200px" />
+  141: <asp:Button runat="server" ID="btn_finish_add" class="btn_next" Text="Finish" OnClientClick="ShowComments();"></asp:Button>
+  142: <asp:Button runat="server" ID="btn_finish_checkout" class="btn_next" Text="Finish" OnClientClick="ShowComments();"></asp:Button>
+
+===== ActivityHistory.aspx =====
+    1: <%@ Page Title="Activity History (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="ActivityHistory.aspx.vb" Inherits="ActivityHistory" %>
+  460: <asp:HiddenField runat="server" ID="hidden_filter_user_index" Value="-1" />
+  461: <asp:HiddenField runat="server" ID="hidden_field_start_date" Value="-1" />
+  462: <asp:HiddenField runat="server" ID="hidden_field_end_date" Value="-1" />
+  464: <asp:Button runat="server" ID="hidden_btn_user_filter" Style="display: none" />
+  465: <asp:Button runat="server" ID="hidden_btn_date_filter" Style="display: none" />
+  466: <asp:Button runat="server" ID="hidden_btn_general" Style="display: none" />
+  488: .report-chk input[type="checkbox"] {
+  497: <asp:CheckBox ID="chk_report_group_items" runat="server" Text="Readable Format" Checked="true" CssClass="report-chk" ToolTip="If you need to manipulate your data more easily you can uncheck this box for a more uniform file." />
+  498: &nbsp&nbsp<asp:ImageButton CssClass="btn-download" runat="server" ID="btn_download_report" ImageUrl="~/Images/Icons/download5.png" ToolTip="Download spreadsheet file (.csv)" />
+  611: <asp:TextBox ID="txt_comment_search" runat="server" AutoPostBack="false" CssClass="txt-comment-search" placeholder="search by keyword..."></asp:TextBox>
+  612: <asp:ImageButton ID="btn_comment_search" runat="server" ImageUrl="~/CSS_2021_B/Controls/search.png" CssClass="btn-comment-search" OnClientClick="ShowTarp();" />
+  673: <asp:Button runat="server" ID="btn_category_all" Text="All Activity" CssClass="btn-category-active" Style="width: 100%;" />
+  675: <asp:Button runat="server" ID="btn_category_inventory" Text="Inventory" CssClass="btn-category-inactive" Style="width: 100%;" />
+  677: <asp:Button runat="server" ID="btn_category_inventory_check_in" Text="Check In" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  679: <asp:Button runat="server" ID="btn_category_inventory_check_out" Text="Check Out" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  681: <asp:Button runat="server" ID="btn_category_inventory_transfer" Text="Transfer" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  683: <asp:Button runat="server" ID="btn_category_inventory_adjust" Text="Adjust" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  686: <asp:Button runat="server" ID="btn_category_products" Text="Products" CssClass="btn-category-inactive" Style="width: 100%;" />
+  688: <asp:Button runat="server" ID="btn_category_products_create" Text="Create" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  690: <asp:Button runat="server" ID="btn_category_products_edit" Text="Edit" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  692: <asp:Button runat="server" ID="btn_category_products_delete" Text="Delete" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  695: <asp:Button runat="server" ID="btn_category_locations" Text="Location" CssClass="btn-category-inactive" Style="width: 100%;" />
+  697: <asp:Button runat="server" ID="btn_category_locations_create" Text="Create" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  699: <asp:Button runat="server" ID="btn_category_locations_edit" Text="Edit" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  701: <asp:Button runat="server" ID="btn_category_locations_delete" Text="Delete" CssClass="btn-category-inactive-small" Style="width: 100%;" />
+  772: <asp:Button Text="Show More..." runat="server" ID="btn_load_more" CssClass="btn-load-more" />
+
+===== ActivityDetails.aspx =====
+    1: <%@ Page Title="Activity Details (CyberStockroom)" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ActivityDetails.aspx.vb" Inherits="ActivityDetails" %>
+  272: <asp:HyperLink ID="lnk_download" runat="server" Target="_blank" ImageUrl="Images/Icons/download5.png" ToolTip="Download this activity as a spreadsheet (.csv)" CssClass="details-download-link"></asp:HyperLink>
+
+===== Expirations.aspx =====
+    1: <%@ Page Title="Expirations (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Expirations.aspx.vb" Inherits="Expirations" %>
+   11: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   12: <asp:HiddenField ID="auto_sku_identifier" runat="server" Value="" />
+   13: <asp:HiddenField ID="hidden_nExpired" runat="server" Value="" />
+   14: <asp:HiddenField ID="hidden_nExpiringSoon" runat="server" Value="" />
+   15: <asp:HiddenField ID="hidden_expiring_soon_days" runat="server" Value="" ClientIDMode="Static" />
+  305: <input class="form-control" id="searchFilter" placeholder="search..." onkeyup="getExpirations(1, 100, this.value)" />
+  324: <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  371: &nbsp;&nbsp;&nbsp;<input id="chk_new_uid" type="checkbox" onclick="toggle_auto_sku()" style="margin:0" />Auto<br />
+  524: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option1" value="1" checked />
+  542: <input class="form-check-input" type="checkbox" checked="checked" id="chk_checkout_old" disabled />
+  548: <input class="form-check-input" type="checkbox" checked="checked" id="chk_delete_old" disabled />
+  554: <input class="form-check-input" type="checkbox" checked="checked" id="chk_create_new" disabled />
+  560: <input class="form-check-input" type="checkbox" checked="checked" id="chk_checkin_new" disabled />
+  568: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option2" value="2" />
+  574: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option3" value="3" />
+  580: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option4" value="4" />
+  586: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option5" value="5" />
+  609: <button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color:#454545; outline:none; border:none;">Cancel</button>
+  610: <button id="save_button" data-action="replace_delete" type="button" onclick="save(this)" class="btn btn-primary">Replace</button>
+
+===== Expirations_read_only.aspx =====
+    1: <%@ Page Title="Expirations (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Expirations_read_only.aspx.vb" Inherits="Expirations_read_only" %>
+    9: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   10: <asp:HiddenField ID="auto_sku_identifier" runat="server" Value="" />
+   11: <asp:HiddenField ID="hidden_nExpired" runat="server" Value="" />
+   12: <asp:HiddenField ID="hidden_nExpiringSoon" runat="server" Value="" />
+   13: <asp:HiddenField ID="hidden_expiring_soon_days" runat="server" Value="" ClientIDMode="Static" />
+  277: <input class="form-control" id="searchFilter" placeholder="search..." onkeyup="getExpirations(1, 100, this.value)" />
+
+===== Kitting.aspx =====
+    1: <%@ Page Title="Kitting (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Kitting.aspx.vb" Inherits="Kitting" %>
+   11: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   12: <asp:HiddenField ID="auto_sku_identifier" runat="server" Value="" />
+   13: <asp:HiddenField ID="hidden_nKits" runat="server" Value="" />
+  136: subListingItem.innerHTML = "<span style='color:#00A27D' onclick='event.stopPropagation(); event.preventDefault(); changeQty(" + id + ", \"" + productUID + "\" ," + quantity + ", \"" + name + "\");'>" + quantity + "</span> &nbsp; x &nbsp; <s
+  511: <input class="form-control" id="searchFilter" placeholder="search..." onkeydown="javascript:if(event.keyCode === 13) {event.preventDefault();}" onkeyup="event.preventDefault(); getKits(event, 1, 100, this.value);" />
+  535: <button class="new-kit-btn" onclick="createNewKit(); return false;">+ NEW KIT</button>
+  680: <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  729: &nbsp;&nbsp;&nbsp;<input id="chk_new_uid" type="checkbox" onclick="toggle_auto_sku()" style="margin: 0" />Auto<br />
+  882: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option1" value="1" checked />
+  898: <input class="form-check-input" type="checkbox" checked="checked" id="chk_checkout_old" disabled />
+  904: <input class="form-check-input" type="checkbox" checked="checked" id="chk_delete_old" disabled />
+  910: <input class="form-check-input" type="checkbox" checked="checked" id="chk_create_new" disabled />
+  916: <input class="form-check-input" type="checkbox" checked="checked" id="chk_checkin_new" disabled />
+  924: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option2" value="2" />
+  930: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option3" value="3" />
+  936: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option4" value="4" />
+  942: <input class="form-check-input" name="options" type="radio" onclick="toggleRadio(this.value)" id="radio_option5" value="5" />
+  965: <button type="button" class="btn btn-danger" data-dismiss="modal" style="background-color: #454545; outline: none; border: none;">Cancel</button>
+  966: <button id="save_button" data-action="replace_delete" type="button" onclick="save(this)" class="btn btn-primary">Replace</button>
+
+===== AddProducts.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" EnableEventValidation="false" AutoEventWireup="false" CodeFile="AddProducts.aspx.vb" Inherits="AddProducts" %>
+ 1564: <div class="clear-product" onclick="ClearProduct()" id="btn_clear_product" style="display: none;" title="Clear product details...">X</div>
+ 1565: <div class="save-product-chk" onclick="AddProduct(); return false;" id="btn_save_product" style="display: none;" title="Save this product..">✓</div>
+ 1580: <asp:HiddenField ID="hidden_thumbnail_index" Value="1" runat="server" />
+ 1581: <asp:HiddenField ID="hidden_thumbnail_url" Value="/Images/Icons/cam_active.png" runat="server" />
+ 1585: <asp:Button runat="server" ID="dummy_btn_default" OnClientClick="AddProduct(); return false;" Style="display: none;"></asp:Button>
+ 1588: <asp:Button ID="btn_upload" runat="server" Style="display: none;" />
+ 1591: <img id="img_thumbnail_html" runat="server" class="add-products-thumbnail is-empty" title="Add image" alt="" onclick="ForceFileUpload(); return false;" src="/Images/Icons/cam_active.png" />
+ 1597: <asp:HiddenField runat="server" ID="data_edit_index" Value="-1" />
+ 1606: <span id="product_number_catalog_error_clear" class="product-number-catalog-error-clear" onclick="clearProductNumberErrorState(); return false;" title="Clear product number">X</span>
+ 1615: <a href="#" class="edit-your-fields-link" onclick="openCustomFieldEditor(); return false;">Edit your fields</a>
+ 1627: <button type="button" class="transfer-import-btn" title="Import from file" onclick="ShowTarpLoader(); document.getElementById('<%=btn_import_from_file.ClientID%>').click(); return false;">import file</button>
+ 1747: <asp:Button ID="btn_import_from_file" runat="server" Text="Import from file" ToolTip="Import from File" Style="display: none;"></asp:Button>
+ 1748: <asp:Button runat="server" class="btn_next save-toggle" ID="btn_save" Text="Save Products"></asp:Button>
+ 1759: <asp:HiddenField runat="server" ID="HF_CF_INDEX_LIST" />
+ 1760: <asp:HiddenField runat="server" ID="HF_PRODUCT_FIELD_ORDER" />
+
+===== ImportFromFile.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ImportFromFile.aspx.vb" Inherits="ImportFromFile" %>
+ 1056: <asp:LinkButton runat="server" CssClass="btn_back" ID="btn_cancel"><span class="btn_back__chevron" aria-hidden="true">‹</span>Go Back</asp:LinkButton>
+ 1058: <asp:Button runat="server" class="btn_next" ID="btn_save" Text="Next" Style="display:none"></asp:Button>
+ 1061: <asp:Button runat="server" class="btn_next" ID="btn_confirm_existing" Text="Continue"></asp:Button>
+ 1070: <div onclick="UploadFile();" id="btn-upload" style="cursor: pointer;">
+ 1081: <asp:Label runat="server" ID="lbl_error_message_numeric" CssClass="lbl_error" Visible="false" Text="The selected field must be numeric!"></asp:Label>
+ 1082: <asp:Label runat="server" ID="lbl_error_message_commas" CssClass="lbl_error" Visible="false" Text="One or more of the fields contains a comma.<br/> Please remove all commas before creating your CSV file!"></asp:Label>
+ 1083: <asp:Label runat="server" ID="lbl_error_message_empty" CssClass="lbl_error" Visible="false" Text="You must select at least a Product Number to upload."></asp:Label>
+ 1130: <td id="left_section" class="left-section-full" onclick="UploadFile();">
+ 1197: <asp:DropDownList runat="server" ID="ddl_match_field" CssClass="match-field-native" EnableViewState="false" />
+ 1198: <div id="match_field_menu" class="match-field-menu" role="listbox" onclick="event.stopPropagation();">
+ 1207: <asp:DropDownList runat="server" ID="ddl_location_key" CssClass="match-field-native" EnableViewState="false" />
+ 1208: <div id="location_key_menu" class="match-field-menu location-key-menu" role="listbox" onclick="event.stopPropagation();">
+
+===== LocationEditor.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="LocationEditor.aspx.vb" Inherits="LocationEditor" %>
+  170: <div id="TOOLBOX_0" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  180: <div id="TOOLBOX_1" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  191: <div id="TOOLBOX_2" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  203: <div id="TOOLBOX_3" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  214: <div id="TOOLBOX_4" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  225: <div id="TOOLBOX_5" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  236: <div id="TOOLBOX_6" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  247: <div id="TOOLBOX_7" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  258: <div id="TOOLBOX_8" class="toolbox-item" draggable="true" ondragstart="drag(event)" ondragend="dragend(event)" onclick="forceDrop(this)">
+  285: <asp:Button runat="server" CssClass="btn-create-child-location hidden" ID="btn_create_child_location" />
+  294: <asp:Button ID="btn_upload_attachment" runat="server" Style="display: none;" />
+  331: <input type="image" id="img_attachment" class="attachment-icon" title="Click to attach file..." onclick="UploadAttachment(); return false" runat="server" src="/Images/Icons/attachment.png" style="outline: none;" />
+  390: <a id="hiddenclickerconfirmation" class="fancybox-confirmation hidden" href="google.com" onclick="return false;"></a>
+  393: <button class="btn-hover" style="background-color: #558DC6; color: white;" onclick="ViewProducts();">View Products</button>
+  396: <div class="location-editor-actions-barcode" style="vertical-align: middle">&nbsp&nbsp&nbsp<asp:Label runat="server" Text="Barcode # (scan to change)" CssClass="lbl_children_title" Font-Bold="true"></asp:Label>
+  397: &nbsp&nbsp&nbsp<asp:TextBox autocomplete="off" runat="server" onkeyup="javascript:barcodeChanged(event)" Style="background-color: #EEEEEE" onClick="this.select();" ID="lbl_barcode" Text="Location ID: " CssClass="lbl_children_title" Font-Bol
+  405: <asp:ImageButton runat="server" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" Style="height: 32px; position: relative; top: 4px;" CssClass="button-hover" ToolTip="Print Barcodes" OnClientClick=" return false;" />
+  410: <a id="kiosk_checkin_link" class="kiosk-link kiosk-link-checkin" href="#" target="_blank" rel="noopener noreferrer" title="Open Checkin Kiosk">
+  413: </a><a id="kiosk_checkout_link" class="kiosk-link kiosk-link-checkout" href="#" target="_blank" rel="noopener noreferrer" title="Open Checkout Kiosk">
+  422: <asp:HiddenField runat="server" ID="hidden_barcode" Value="-2" />
+  423: <asp:Button runat="server" ID="hidden_barcode_btn" Style="display: none" />
+
+===== NewLocation.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="NewLocation.aspx.vb" Inherits="Popups_NewLocation" %>
+
+===== PrintBarcode.aspx =====
+   40: WinPrint.document.write('<div class="no-print"><button type="button" onclick="window.print();">PRINT BARCODE</button></div>');
+  195: <asp:DropDownList ID="ddl_label_stock" runat="server" CssClass="themed">
+  196: <asp:ListItem Value="30252" Text="30252 (1-1/8&quot; × 3-1/2&quot;)" Selected="True" />
+  197: <asp:ListItem Value="30336" Text="30336 (1&quot; × 2-1/8&quot;)" />
+  198: <asp:ListItem Value="30334" Text="30334 (2-1/4&quot; × 1-1/4&quot;)" />
+  199: <asp:ListItem Value="30330" Text="30330 (3/4&quot; × 2&quot;)" />
+  200: </asp:DropDownList>
+  203: <asp:Button ID="btn_preview" runat="server" Text="PREVIEW & PRINT" CssClass="themed button"/>
+
+===== DocumentEditor.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="DocumentEditor.aspx.vb" Inherits="DocumentEditor" %>
+   50: <asp:label runat="server" ID="lbl_document_type" CssClass="document-header" Text="Purchase Order" ForeColor="#ff9900"></asp:label>
+   52: <asp:label runat="server" ID="lbl_document_number" CssClass="document-number" Text="#CS00001"></asp:label>
+
+===== CheckInCreatedProducts.aspx =====
+  864: <asp:Button ID="btn_skip_return" runat="server" CssClass="checkin-skip" Text="Skip â€ºâ€º" Visible="false" CausesValidation="false" UseSubmitBehavior="false" />
+  865: <asp:Button ID="btn_continue_transfer" runat="server" CssClass="checkin-continue" Text="Continue" Visible="false" CausesValidation="false" />
+  867: <button type="button" class="checkin-skip" onclick="closeCreatedProductsModal()">Skip check-in<svg class="checkin-skip__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5.2 4.8 11.4 12 5.2 19.2 7.
+  868: <button type="button" class="checkin-continue" onclick="openCheckinComment(); return false;">Check in</button>
+  884: <button type="button" class="checkin-skip" onclick="closeCreatedProductsModal()">Skip check-in<svg class="checkin-skip__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5.2 4.8 11.4 12 5.2 19.2 7.
+  895: <asp:Button ID="btn_checkin" runat="server" Text="Check In" Style="display: none;" />
+  896: <asp:HiddenField ID="hidden_locationID" runat="server" />
+  897: <asp:HiddenField ID="hidden_comment" runat="server" />
+  900: <div class="checkin-comment-modal__backdrop" onclick="cancelCheckinComment()"></div>
+  905: <button type="button" class="checkin-comment-modal__btn checkin-comment-modal__btn--cancel" onclick="cancelCheckinComment()">Cancel</button>
+  906: <button id="checkin_comment_btn" type="button" class="checkin-comment-modal__btn checkin-comment-modal__btn--skip" onclick="confirmCheckinComment()">Skip Comment</button>
+
+===== Login.aspx =====
+    1: <%@ Page Title="Login (CyberStockroom)" Language="VB" MasterPageFile="~/MasterPage_LandingPage1.master" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" %>
+  160: <%--  <asp:Button runat="server" Text="Test Create Account" ID="btn_new_account_TEST" />--%>
+  162: <div class="content" onclick="GoHome(event)">
+  176: <asp:TextBox runat="server" CssClass="txt-field" ID="txt_email" placeholder="me@email.com" />
+  181: <asp:TextBox runat="server" CssClass="txt-field" ID="txt_password" TextMode="Password" placeholder="***********" />
+  186: <asp:Label runat="server" ID="lbl_error" CssClass="lbl-error" Text="The email or password is not correct..." Visible="false"></asp:Label>
+  189: <asp:Button CssClass="btn-login" runat="server" ID="btn_login" Text="Log in" />
+  193: <label runat="server" id="lbl_forgot_password" class="lbl-forgot-password" onclick="ShowPasswordReset()">Forgot Password?</label>
+  198: <asp:TextBox runat="server" CssClass="txt-password-email-reset" ID="txt_password_email_reset" placeholder="Your Email"></asp:TextBox>
+  199: <asp:Button runat="server" Text="Send" ID="btn_password_reset" CssClass="btn-password-reset" />
+  206: <asp:HiddenField runat="server" ID="HIDDEN_GoogleToken" />
+  207: <asp:HiddenField runat="server" ID="HIDDEN_GoogleAccessToken" />
+  209: <asp:Button runat="server" ID="btnGoogleLogin" Text="Google Login" Style="display: none" />
+  216: <div class="g-signin2" data-width="300" data-longtitle="true" data-theme="dark" data-onsuccess="onSignIn"></div>
+
+===== Welcome.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="Welcome.aspx.vb" Inherits="Welcome" %>
+   83: <asp:HiddenField runat="server" ID="nLocations_hidden" Value="0" />
+   96: <asp:HiddenField ID="hidden_pg_number" runat="server" Value="1" />
+  257: <div data-location-type="0" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  262: <div data-location-type="1" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  267: <div data-location-type="2" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  275: <div data-location-type="3" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  280: <div data-location-type="4" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  285: <div data-location-type="5" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  293: <div data-location-type="6" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  298: <div data-location-type="7" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  303: <div data-location-type="8" onclick="CreateFirstLocation(this);" style="display: inline-block" class="toolbox-unit">
+  338: <asp:Button runat="server" ID="btn_next" Style="opacity: 0; position: fixed; right: -400px; top: -400px" Text=">" Visible="true" OnClientClick="javascript:parent.ShowTarpGuide();" />
+
+===== ProfileRequired.aspx =====
+    1: <%@ Page Title="Your profile" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ProfileRequired.aspx.vb" Inherits="ProfileRequired" %>
+   22: <asp:Button ID="btn_save" runat="server" Text="Save" CssClass="profile-icon-picker__save" OnClientClick="if (window.parent &amp;&amp; typeof window.parent.ShowTarpLoader === 'function') window.parent.ShowTarpLoader();" />
+
+===== UpdateAccount.aspx =====
+  372: <asp:HiddenField runat="server" ID="hidden_PaymentMethodNotSet" Value="1" />
+  435: <img src="Images/Pages/SecureRegistration/2024/monthly.png" id="price_1O6zRX4D3SV7Y45Utyewx37h" class="img-plan" onclick="ForceClick(1)" />
+  439: <img src="Images/Pages/SecureRegistration/2024/annual.png" id="price_1O6zS34D3SV7Y45UCZ8p3YaG" class="img-plan" onclick="ForceClick(2)" />
+  445: <img src="Images/Pages/SecureRegistration/2024/monthly.png" id="price_1O6zPg4D3SV7Y45Uo7dWc4vq" class="img-plan" onclick="ForceClick(1)" />
+  449: <img src="Images/Pages/SecureRegistration/2024/annual.png" id="price_1O6zQP4D3SV7Y45UXmcQ1DRb" class="img-plan" onclick="ForceClick(2)" />
+
+===== BillingHistory.aspx =====
+
+===== ExportReport.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ExportReport.aspx.vb" Inherits="ExportReport" %>
+   61: <asp:Button runat="server" ID="btn_export" Text="Download File" CssClass="button" Style="background-color: #00A27D; color: white; font-family: 'Century Gothic'; font-size: 100%; padding:15px 20px;" />
+   78: <asp:CheckBox ID="chk_qty_zero" CssClass="checkboxes" runat="server" Checked="false" Text=" Include Products with 0 Quantity" />
+   80: <asp:CheckBox ID="chk_sub_locations" CssClass="checkboxes" runat="server" Checked="false" Text=" Include Products in Sub-Locations" />
+   89: <asp:CheckBox ID="chq_product_number" CssClass="checkboxes" runat="server" Checked="true" Text=" Product Number" Enabled="false" Style="font-weight:bold; color:#999999;" />
+   92: <asp:CheckBox ID="chq_description" CssClass="checkboxes" runat="server" Checked="true" Text=" Description" />
+   95: <asp:CheckBox ID="chq_quantity" CssClass="checkboxes" runat="server" Checked="true" Text=" Quantity" OnClick="toggleCheckBox2(this)" />
+  105: &nbsp;&nbsp;&nbsp;&nbsp; <asp:CheckBox ID="chk_qty_by_location" CssClass="checkboxes" runat="server" Checked="true" Text=" breakdown by location" Enabled="true" />
+  108: <asp:CheckBox ID="chq_buy_price" CssClass="checkboxes" runat="server" Checked="true" Text=" Buy Price" />
+  111: <asp:CheckBox ID="chq_cost_value" CssClass="checkboxes" runat="server" Checked="true" Text=" Cost Value" />
+  114: <asp:CheckBox ID="chq_sell_price" CssClass="checkboxes" runat="server" Checked="true" Text=" Sell Price" />
+  120: <asp:CheckBox ID="chk_product_image" CssClass="checkboxes" runat="server" Checked="false" Text=" Product Image" />
+
+===== Popups\QuickScan.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="QuickScan.aspx.vb" Inherits="Popups_QuickScan" %>
+   18: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+  595: <button type="button" flex="4" id="save_btn" onclick="save(event);" style="display: none">Save</button>
+  598: <input id="barcode_area" placeholder="ready to scan..." enterkeyhint="search" onkeydown="captureEnterSafely(event, this)" onkeyup="captureEnterSafelyKeyup(event, this)" autocomplete="off" />
+  599: <%--<input id="barcode_area" placeholder="ready to scan..." onkeydown="barcodeChanged(event, this);" autocomplete="off" />--%>
+  781: <input id="comment" type="text" placeholder="Optional comment..." autocomplete="off" enterkeyhint="done" onkeydown="commentEnterTriggersSave(event)" />
+
+===== Popups\CloneProduct.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="CloneProduct.aspx.vb" Inherits="Popups_CloneProduct" %>
+   39: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   40: <asp:HiddenField ID="productUID_hidden" runat="server" Value="" />
+
+===== Popups\PeekLocationDetails.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="PeekLocationDetails.aspx.vb" Inherits="Popups_PeekLocationDetails" %>
+    7: <asp:Button ID="btn_upload_attachment" runat="server" Style="display: none;" />
+   28: <input type="image" id="img_attachment" class="attachment-icon" title="Click to attach file..." onclick="return false" runat="server" src="/Images/Icons/attachment.png" style="outline: none;" />
+   43: <asp:ImageButton runat="server" ImageUrl="~/Images/Pages/ProductEditor/PrintScan4.png" Style="height: 32px;" CssClass="button-hover" ToolTip="Print Barcodes" OnClientClick=" return false;" />
+   46: <asp:TextBox runat="server" Style="background-color: #EEEEEE; font-family:'Century Gothic'; text-align:center" Enabled="false" ID="lbl_barcode" Text="Location ID: " CssClass="lbl_children_title" Font-Bold="true"></asp:TextBox>
+
+===== Popups\FixedMultiFields.aspx =====
+   82: <asp:HiddenField ID="hidden_listbox_values" runat="server" />
+   90: <asp:TextBox runat="server" ID="txt_new_default"></asp:TextBox>
+   91: <button class="btn btn-add" runat="server" id="btn_add_default" onclick="addItem(); return false;">+ Add</button>
+  100: <asp:CheckBox runat="server" ID="chk_allow_other" AutoPostBack="false" Text="Allow other values" onclick="document.getElementById('<%=btn_save.ClientID%>').style.display='initial';" />
+  104: <button class="btn btn-remove" id="btn_remove" onclick="removeItem();return false;">Remove</button>
+  105: <button class="btn btn-cancel" id="btn_cancel" onclick="parent.jQuery.fancybox.close();">Cancel</button>
+  106: <asp:Button CssClass="btn btn-save" ID="btn_save" runat="server" Text="Save" OnClientClick="updateHiddenField(); this.classList.add('btn-saving'); this.value='Saving...';" />
+
+===== MOBILE_Process.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_Process.aspx.vb" Inherits="MOBILE_Process" %>
+  245: <asp:Button runat="server" ID="btn_setDefault_location" Style="display: none" />
+  281: <asp:Label runat="server" CssClass="process-label" Text="Check In" ID="txt_process_name"></asp:Label>
+  341: <div runat="server" id="save_location_div" onclick="setDefaultLocation()" class="btn-make-default">Save location</div>
+  344: <div runat="server" id="process_products" class="div-process-step" style="display: none;" onclick="ShowTarpLoader(); window.location.href = 'MOBILE_ProductSelector.aspx';">
+  354: <div runat="server" id="process_products_complete" class="div-process-step-complete" style="display: none;" onclick="ShowTarpLoader(); window.location.href='MOBILE_ProductSelector.aspx';">
+  375: <asp:TextBox ID="txt_comments" runat="server" CssClass="txt-comments" placeholder="Comments..." TextMode="MultiLine" Style="display: none;"></asp:TextBox>
+  377: <asp:Button runat="server" ID="btn_mobile_transfer_modal_done" Style="display: none" UseSubmitBehavior="false" />
+  378: <asp:Button runat="server" ID="btn_finish" class="btn-save" Style="display: none;" Text="FINISH"></asp:Button>
+  383: <asp:TextBox ID="txt_comments_modal" runat="server" CssClass="txt-comments" placeholder="Comments..." TextMode="MultiLine"></asp:TextBox>
+  385: <button type="button" class="btn-comment-action btn-comment-skip" onclick="finishWithComment(false)">Skip</button>
+  386: <button type="button" class="btn-comment-action btn-comment-save" onclick="syncAndSaveComment()">Save</button>
+
+===== MOBILE_Transfer.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_Transfer.aspx.vb" Inherits="MOBILE_Transfer" %>
+
+===== MOBILE_QuickScan.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_QuickScan.aspx.vb" Inherits="MOBILE_QuickScan" %>
+
+===== MOBILE_QuickAdd.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_QuickAdd.aspx.vb" Inherits="MOBILE_QuickAdd" %>
+   63: <asp:TextBox runat="server" ID="txt_productName" CssClass="txt-product-name" placeholder="Description..."></asp:TextBox>
+   67: <asp:Button runat="server" ID="btn_create_product" Text="CREATE" OnClientClick="ShowTarpLoader();" CssClass="btn-save" /><br /><br /><button onclick="ShowTarpLoader(); window.history.back();" class="btn-cancel" type="button">CANCEL</button>
+
+===== MOBILE_Products.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_Products.aspx.vb" Inherits="MOBILE_Products" %>
+  128: <asp:TextBox runat="server" ID="txt_search" CssClass="searchbox" placeholder="Search or Scan"></asp:TextBox>
+  132: <asp:Button runat="server" ID="btn_search_or_scan" CssClass="btn-search" Text=">" style="display:none" />
+  142: <asp:Button runat="server" ID="btn_load_more" CssClass="btn-scroll" Text="Load More" />
+
+===== MOBILE_ProductEditor.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_ProductEditor.aspx.vb" Inherits="MOBILE_ProductEditor" %>
+   18: <asp:Label runat="server" ID="lbl_Description" Text="Description" Font-Bold="true" CssClass="title"></asp:Label>
+   20: <asp:Label runat="server" ID="lbl_ProductNumber" Text="Product Number"  CssClass="subtitle"></asp:Label>
+
+===== MOBILE_LocationSelector.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_LocationSelector.aspx.vb" Inherits="MOBILE_LocationSelector" %>
+
+===== MOBILE_ProductSelector.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_ProductSelector.aspx.vb" Inherits="MOBILE_ProductSelector" %>
+   14: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductNumbers" />
+   15: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductNames" />
+   16: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductQuantities" />
+   17: <asp:HiddenField runat="server" ID="HiddenFIeld_FullExtraDetails" />
+   18: <asp:HiddenField runat="server" ID="HiddenFIeld_ShortFilterString" />
+   19: <asp:HiddenField runat="server" ID="HiddenFIeld_AccountID" />
+   21: <input type="text" class="product-search" id="txt_search_filter" onkeyup="FilterList(this.value)" onkeypress="if (event.keyCode == '13') {var tmp=this.value; this.value=''; Try2Scan(tmp, event); this.value=''; return false;}" onchange="var 
+   31: <button class="btn_next" id="btn_save" style="display: none; background-color: #00B050 !important;" onclick="SignalNext(); return false">FINISHED</button>
+
+===== mobile_main.aspx =====
+    1: <%@ Page Title="Mobile (CyberStockroom)" Language="VB" MasterPageFile="~/MOBILE_MasterPage.master" AutoEventWireup="false" CodeFile="MOBILE_main.aspx.vb" Inherits="MOBILE_main" %>
+  466: .mobile-main-scope-switch-cb input[type="checkbox"] {
+  525: .mobile-main-scope-switch-cb input[type="checkbox"]:checked ~ label::before {
+  529: .mobile-main-scope-switch-cb input[type="checkbox"]:checked ~ label::after {
+ 2869: <asp:Label runat="server" ID="lbl_scope_caption" CssClass="mobile-main-scope-caption" Text="My Activity" />
+ 2870: <span class="mobile-main-scope-switch" onclick="try{document.cookie='MOBILE_ScopeToggleTarp=1; path=/; max-age=120';}catch(e){} if(typeof ShowTarpLoaderForNavigation==='function')ShowTarpLoaderForNavigation();">
+ 2871: <asp:CheckBox runat="server" ID="chk_scope_just_you" Text="&#160;" Checked="True" AutoPostBack="True" CssClass="mobile-main-scope-switch-cb" />
+ 2911: <button type="button" class="mobile-main-loc-modal__close" data-mobile-main-loc-dismiss="1" title="Close" aria-label="Close">&times;</button>
+ 2915: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="0" role="listitem"><span class="location-small-0" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Building</span></button>
+ 2916: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="1" role="listitem"><span class="location-small-1" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Warehouse</span></button>
+ 2917: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="2" role="listitem"><span class="location-small-2" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Store</span></button>
+ 2918: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="3" role="listitem"><span class="location-small-3" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Floor</span></button>
+ 2919: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="4" role="listitem"><span class="location-small-4" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Room</span></button>
+ 2920: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="5" role="listitem"><span class="location-small-5" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Closet</span></button>
+ 2921: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="6" role="listitem"><span class="location-small-6" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Shelf</span></button>
+ 2922: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="7" role="listitem"><span class="location-small-7" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Bin</span></button>
+ 2923: <button type="button" class="mobile-main-loc-toolbox__unit" data-location-type="8" role="listitem"><span class="location-small-8" aria-hidden="true"></span><span class="mobile-main-loc-toolbox__label">Vehicle</span></button>
+ 2932: <button type="button" class="mobile-main-loc-modal__close" data-mobile-main-loc-dismiss="1" title="Close" aria-label="Close">&times;</button>
+ 2942: <button type="button" class="mobile-main-loc-name__btn mobile-main-loc-name__btn--secondary" id="mobileMainAddLocationNameCancel">Cancel</button>
+ 2943: <button type="button" class="mobile-main-loc-name__btn mobile-main-loc-name__btn--primary" id="mobileMainAddLocationNameSubmit">Create</button>
+ 2951: <div class="footer-pull-tab" id="mobileMainFooterPullTab" aria-label="Selected location" role="status">
+ 2952: <button type="button" class="footer-pull-tab__expand-actions footer-pull-tab__expand-actions--hidden" id="mobileMainFooterExpandActions" aria-expanded="false" aria-label="Show check in and check out" tabindex="0" onclick="csMobileMainToggle
+ 2964: <button type="button" class="footer-pull-tab__edit" id="mobileMainFooterPullTabEdit" aria-label="Edit location" tabindex="0" onclick="csMobileMainEditPrimedLocation(); return false;" onkeydown="if(event.key==='Enter'||event.key===' '){event
+ 2972: <div class="footer-action footer-action--checkin" onclick="ShowTarpLoader(); Process('CHECK_IN');">
+ 2975: <div class="footer-action footer-action--viewproducts" role="button" tabindex="0" aria-label="View products in selected location" onclick="csMobileMainViewProductsForPrimed(); return false;" onkeydown="if(event.key==='Enter'||event.key===' 
+ 2985: <div class="footer-action footer-action--checkout" onclick="ShowTarpLoader(); Process('CHECK_OUT');">
+ 2992: <asp:HiddenField runat="server" ID="hf_view_products_location" Value="-2" />
+ 2993: <asp:Button runat="server" ID="btn_view_products_hidden" style="display: none;" />
+ 2996: <asp:Button runat="server" ID="btn_logout" style="display: none;" />
+
+===== ProductSelector.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="ProductSelector.aspx.vb" Inherits="ProductSelector" %>
+   20: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductNumbers" />
+   21: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductNames" />
+   22: <asp:HiddenField runat="server" ID="HiddenFIeld_FullProductQuantities" />
+   23: <asp:HiddenField runat="server" ID="HiddenFIeld_FullExtraDetails" />
+   24: <asp:HiddenField runat="server" ID="HiddenFIeld_ShortFilterString" />
+   25: <asp:HiddenField runat="server" ID="HiddenFIeld_AccountID" />
+   99: <a runat="server" id="link_import_w_locations" href="ImportFromFIle?CREATE_NEW=FALSE&LOCATION_REQUIRED=TRUE" class="button import-button-w-location" onclick="ShowTarpLoader()"><b>OR</b> Import from File with Locations</a>
+  115: <input type="text" class="product-search" style="padding-right: 25px;" id="txt_search_filter" onkeyup="FilterList(this.value)" onkeypress="if (event.keyCode == '13') {var tmp=this.value; this.value=''; Try2Scan(tmp); this.value=''; return f
+  116: <button id="clearButton" onclick="document.getElementById('txt_search_filter').value='';FilterList(this.value); document.getElementById('txt_search_filter').focus(); return false;">X</button>
+  149: <a href="/Start?add=true" target="_parent" onclick="ShowTarpLoader()" class="new-prod-btn">+ New Products</a>
+  152: <a runat="server" id="link_import" href="ImportFromFIle?CREATE_NEW=FALSE" class="button import-button" onclick="ShowTarpLoader()">Import From File</a>
+  181: <button class="btn_next" id="btn_save" style="display: none;" onclick="SignalNext(); parent.$.fancybox.close();">Select</button>
+
+===== Map.aspx =====
+    1: <%@ Page Title="Map (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Map.aspx.vb" Inherits="Map" %>
+  145: <div class="map-zoom-controls zoom-instructions" role="toolbar" aria-label="Map zoom">
+  146: <button type="button" class="map-zoom-btn" title="Type +/- to zoom" aria-label="Type +/- to zoom" onclick="mapZoomStepOut(); return false;">
+  149: <button type="button" class="map-zoom-btn" title="Type +/- to zoom" aria-label="Type +/- to zoom" onclick="mapZoomStepIn(); return false;">
+
+===== Map_read_only.aspx =====
+    1: <%@ Page Title="Map (CyberStockroom)" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="Map_read_only.aspx.vb" Inherits="Map_read_only" %>
+   23: <div class="map-zoom-controls zoom-instructions" role="toolbar" aria-label="Map zoom">
+   24: <button type="button" class="map-zoom-btn" title="Type +/- to zoom" aria-label="Type +/- to zoom" onclick="mapZoomStepOut(); return false;">
+   27: <button type="button" class="map-zoom-btn" title="Type +/- to zoom" aria-label="Type +/- to zoom" onclick="mapZoomStepIn(); return false;">
+
+===== Controls\CS_SearchBox.ascx =====
+   19: <input type="text" class="txt_searchbox" placeholder="" /><br />
+   20: <asp:Button runat="server" TabIndex="-1" ID="btn_search" OnClientClick="javascript:custom_search(); return false;" CssClass="hidden"></asp:Button>
+   23: <asp:Button runat="server" TabIndex="-1" ID="FORCE_CUSTOM_SEARCH" CssClass="hidden" />
+   24: <asp:Button runat="server" TabIndex="-1" ID="FORCE_LOCATION_SEARCH" CssClass="hidden" />
+   25: <asp:Button runat="server" TabIndex="-1" ID="FORCE_PRODUCT_SEARCH" CssClass="hidden" />
+
+===== Controls\LocationSelector_CONTROL.ascx =====
+  104: <asp:Button ID="HiddenBtn_Breadcrumb" CssClass="Hidnbreadcrumbs" runat="server" Text=" Relocate Stockroom " />
+
+===== Controls\mapDashboard.ascx =====
+    6: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+   20: <button onclick="reMap(csToken, containerDiv, {
+   30: <div id="floating_add_tab" class="floating-add-tab" title="Create a new location..." onclick="HoverAddClick(this, event, -2)">+</div>
+
+===== Controls\CustomFieldEditorModal.ascx =====
+    9: <asp:HiddenField runat="server" ID="csToken_hidden" ClientIDMode="Static" />
+   10: <asp:HiddenField runat="server" ID="hidden_custom_fields" ClientIDMode="Static" />
+   11: <asp:HiddenField runat="server" ID="hidden_custom_fields_default" ClientIDMode="Static" />
+   12: <asp:HiddenField runat="server" ID="hidden_custom_fields_personalized" ClientIDMode="Static" />
+   13: <asp:HiddenField runat="server" ID="hidden_custom_fields_can_edit" ClientIDMode="Static" Value="0" />
+   14: <asp:HiddenField runat="server" ID="hidden_personalized_sort_enabled" ClientIDMode="Static" Value="0" />
+   20: <button type="button" class="custom-field-editor-close" onclick="closeCustomFieldEditor(); return false;" aria-label="Close">&times;</button>
+   25: <input type="checkbox" id="toggle_personalized_sort" onchange="handlePersonalizedSortToggle(this)" />
+
+===== Controls\EDITABLE_FIELD.ascx =====
+   35: <asp:Button runat="server" ID="hidden_button_single_postback" style="display:none;" />
+
+===== Controls\MOBILE_ProcessProgress.ascx =====
+
+===== Dialogs\ProductDeleteConfirmation.aspx =====
+   15: <%--<asp:ListBox runat="server" ID="listbox_products" CssClass="listbox-style wide"></asp:ListBox>--%>
+   16: <asp:TextBox runat="server" ID="txt_products" CssClass="listbox-style wide" TextMode="MultiLine" Enabled="false"></asp:TextBox>
+
+===== ConfirmationDialog.aspx =====
+   43: <asp:CheckBox ID="chk_sub_locations" runat="server" class="chk-sub-locations" Text="Include Any Sub-Locations" Checked="true"></asp:CheckBox>
+   48: <asp:Button CssClass="btn btn-yes" Text="YES" runat="server" ID="btn_yes_delete" />
+
+===== pages\guides\getting-started.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="getting-started.aspx.vb" Inherits="pages_guides_onboarding" %>
+  178: <asp:HiddenField ID="csToken_hidden" runat="server" Value="" />
+  179: <asp:HiddenField ID="firstName_hidden" runat="server" Value="" />
+  185: <button id="back_button" class="back-button" style="display: none;"><</button>
+  187: <button id="forward_button" class="forward-button" style="display: none;">></button>
+  225: <asp:TextBox ID="inivitation_name1" CssClass="name-invites" runat="server" placeholder="Name"></asp:TextBox>
+  226: <asp:TextBox ID="invitation_email1" CssClass="email-invites" runat="server" placeholder="Email"></asp:TextBox>
+  228: <asp:TextBox ID="inivitation_name2" CssClass="name-invites" runat="server" placeholder="Name"></asp:TextBox>
+  229: <asp:TextBox ID="invitation_email2" CssClass="email-invites" runat="server" placeholder="Email"></asp:TextBox>
+  231: <asp:TextBox ID="inivitation_name3" CssClass="name-invites" runat="server" placeholder="Name"></asp:TextBox>
+  232: <asp:TextBox ID="invitation_email3" CssClass="email-invites" runat="server" placeholder="Email"></asp:TextBox>
+  234: <asp:TextBox ID="inivitation_name4" CssClass="name-invites" runat="server" placeholder="Name"></asp:TextBox>
+  235: <asp:TextBox ID="invitation_email4" CssClass="email-invites" runat="server" placeholder="Email"></asp:TextBox>
+  238: <asp:Button CssClass="btn" Style="background-color: #0070C0; opacity: 0.5" runat="server" ID="skip_invitations" Text="Skip" OnClientClick="ShowTarpGuide(); setStatus(_onboardingPlaybook, 0, 'invitation-complete'); return false;" />
+  239: <asp:Button CssClass="btn" Style="background-color: #00B050" runat="server" ID="send_invitations" Text="Send Invitations" OnClientClick="ShowTarpGuide();" />
+  327: <div onclick="toggleCF(this, 'Manufacturer');" class="cf-choice cf-choice-active">Manufacturer</div>
+  328: <div onclick="toggleCF(this, 'Supplier');" class="cf-choice cf-choice-active">Supplier</div>
+  329: <div onclick="toggleCF(this, 'Style');" class="cf-choice">Style</div>
+  330: <div onclick="toggleCF(this, 'Color');" class="cf-choice">Color</div>
+  331: <div onclick="toggleCF(this, 'Height');" class="cf-choice">Height</div>
+  332: <div onclick="toggleCF(this, 'Weight');" class="cf-choice">Weight</div>
+  333: <div onclick="toggleCF(this, 'Unit');" class="cf-choice">Unit</div>
+  334: <div onclick="toggleCF(this, 'Contact');" class="cf-choice">Contact</div>
+  339: <input id="new_cf" type="text" onkeydown="addCF(event);" value="" placeholder="Type and Press Enter..." style="width: 30%" />
+  355: <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+  359: <iframe width="560" height="315" src="https://www.youtube.com/embed/IdgoznaxBZ4?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  393: <asp:Button CssClass="btn" BackColor="#00b050" runat="server" ID="btn_finalize" Text="Start Using CyberStockroom!" OnClientClick="ShowTarpGuide()" />
+
+===== ai-report.aspx =====
+    1: <%@ Page Title="AI Insights Report" Language="VB" MasterPageFile="~/UserPage.master" AutoEventWireup="false" CodeFile="ai-report.aspx.vb" Inherits="ai_report" %>
+
+===== SecureRegistration.aspx =====
+    1: <%@ Page Title="" Language="VB" MasterPageFile="~/UserPageNoMenu.master" AutoEventWireup="false" CodeFile="SecureRegistration.aspx.vb" Inherits="SecureRegistration" %>
+
+===== UpdateAlert.aspx =====

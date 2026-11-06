@@ -1,0 +1,383 @@
+
+===== Controls\CS_SearchBox.ascx.vb (3) =====
+  100: Protected Sub JS_HANDLE__FORCE_CUSTOM_SEARCH_Click(sender As Object, e As EventArgs) Handles FORCE_CUSTOM_SEARCH.Click
+  110: Protected Sub FORCE_PRODUCT_SEARCH_Click(sender As Object, e As EventArgs) Handles FORCE_PRODUCT_SEARCH.Click
+  120: Protected Sub FORCE_LOCATION_SEARCH_Click(sender As Object, e As EventArgs) Handles FORCE_LOCATION_SEARCH.Click
+
+===== Controls\CustomFieldEditorModal.ascx.vb (1) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Controls\EDITABLE_FIELD.ascx.vb (3) =====
+   81: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  331: Protected Sub hidden_button_single_postback_Click(sender As Object, e As EventArgs) Handles hidden_button_single_postback.Click
+  721: 'Private Sub CustomClickEvent_CANCEL(sender As Object, e As EventArgs)
+
+===== Controls\LocationSelector_CONTROL.ascx.vb (1) =====
+  119: Protected Sub HiddenBtn_Breadcrumb_Click(sender As Object, e As EventArgs) Handles HiddenBtn_Breadcrumb.Click
+
+===== Controls\mapDashboard.ascx.vb (1) =====
+   14: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+===== Controls\Map_CONTROL_2017.ascx.vb (7) =====
+   96: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  109: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  294: Private Sub btn_hidden_hover_delete_Click(sender As Object, e As EventArgs) Handles btn_hidden_hover_delete.Click
+  299: Protected Sub btn_hidden_transfer_products_Click(sender As Object, e As EventArgs) Handles btn_hidden_transfer_products.Click
+  305: Protected Sub btn_hidden_create_new_location_Click(sender As Object, e As EventArgs) Handles btn_hidden_create_new_location.Click
+  342: Protected Sub btn_hidden_reparent_coordinates_Click(sender As Object, e As EventArgs) Handles btn_hidden_reparent_coordinates.Click
+  606: Protected Sub btn_hidden_hover_view_Click(sender As Object, e As EventArgs) Handles btn_hidden_hover_view.Click
+
+===== Controls\Map_CONTROL_MOBILE_2018.ascx.vb (7) =====
+   59: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  141: Private Sub btn_hidden_hover_delete_Click(sender As Object, e As EventArgs) Handles btn_hidden_hover_delete.Click
+  146: Private Sub btn_hidden_save_coordinates_Click(sender As Object, e As EventArgs) Handles btn_hidden_save_coordinates.Click
+  199: Private Sub btn_hidden_update_quantity_Click(sender As Object, e As EventArgs) Handles btn_hidden_update_quantity.Click
+  242: Protected Sub btn_hidden_transfer_products_Click(sender As Object, e As EventArgs) Handles btn_hidden_transfer_products.Click
+  247: Protected Sub btn_hidden_create_new_location_Click(sender As Object, e As EventArgs) Handles btn_hidden_create_new_location.Click
+  279: Protected Sub btn_hidden_hover_view_Click(sender As Object, e As EventArgs) Handles btn_hidden_hover_view.Click
+
+===== Controls\MOBILE_ProcessProgress.ascx.vb (1) =====
+    9: Protected Sub MOBILE_ProcessProgress_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+
+===== Controls\ProfileIconPicker.ascx.vb (1) =====
+   69: Protected Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
+
+===== Dialogs\ProductDeleteConfirmation.aspx.vb (1) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Mobile\Map.aspx.vb (1) =====
+    5: Private Sub form1_Init(sender As Object, e As EventArgs) Handles form1.Init
+
+===== Mobile\ProductEditorMap.aspx.vb (2) =====
+    5: Protected Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+    9: Private Sub MAP_CONTROL_1_Init(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.Init
+
+===== OAuth2\auth.aspx.vb (1) =====
+   10: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== OAuth2\consent.aspx.vb (3) =====
+   48: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  155: Private Sub consent_allow_Click(sender As Object, e As EventArgs) Handles consent_allow.Click
+  159: Private Sub consent_cancel_Click(sender As Object, e As EventArgs) Handles consent_cancel.Click
+
+===== pages\guides\getting-started.aspx.vb (4) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   47: Protected Sub Page_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
+   60: Protected Sub send_invitations_Click(sender As Object, e As EventArgs) Handles send_invitations.Click
+  151: Protected Sub btn_finalize_Click(sender As Object, e As EventArgs) Handles btn_finalize.Click
+
+===== pages\settings\popups\lansweeperCategoryLocationToggle.aspx.vb (1) =====
+   13: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== pages\settings\popups\lansweeperConnectionSuccess.aspx.vb (2) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   26: Protected Sub timer1_Tick(sender As Object, e As EventArgs) Handles timer1.Tick
+
+===== pages\settings\popups\lansweeperFieldToggle.aspx.vb (1) =====
+   18: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== pages\settings\popups\lansweeperLinkAndSync.aspx.vb (1) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== pages\settings\popups\lansweeperSiteSelector.aspx.vb (2) =====
+   15: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   47: Protected Sub btn_connect_Click(sender As Object, e As EventArgs) Handles btn_connect.Click
+
+===== pages\webhooks\lansweeper.aspx.vb (1) =====
+   14: Protected Sub Page_PreInit(sender As Object, e As EventArgs) Handles Me.PreInit
+
+===== Popups\CloneProduct.aspx.vb (1) =====
+   22: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Popups\FixedMultiFields.aspx.vb (2) =====
+   20: Private Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   66: Private Sub SavePresets(sender As Object, e As EventArgs) Handles btn_save.Click
+
+===== Popups\PeekLocationDetails.aspx.vb (1) =====
+   19: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Popups\QuickScan.aspx.vb (1) =====
+   10: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== _cvr\SuccessProducts.aspx.vb (1) =====
+   10: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== _masterPages\hydra-v6-gtx\hydra-v6-gtx.master.vb (1) =====
+   12: Private Sub _masterPages_hydra_v6_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+===== _masterPages\_landingPage_marketing.master.vb (4) =====
+   12: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   61: Protected Sub btnGoogleLogin_Click(sender As Object, e As EventArgs) Handles btnGoogleLogin.Click
+  201: 'Protected Sub btn_CTA2_Click(sender As Object, e As EventArgs) Handles btn_CTA2.Click
+  206: Protected Sub btn_CTA2_w_reCaptcha_Click(sender As Object, e As EventArgs) Handles btn_CTA2_w_reCaptcha.Click
+
+===== ActivityDetails.aspx.vb (1) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== ActivityHistory.aspx.vb (21) =====
+   19: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   31: Protected Sub Page_LoadComplete(sender As Object, e As EventArgs) Handles Me.LoadComplete
+ 1117: Protected Sub btn_load_more_Click(sender As Object, e As EventArgs) Handles btn_load_more.Click
+ 1124: Protected Sub LocationSelector_control_LocationChanged(sender As Object, e As EventArgs) Handles LocationSelector_control.LocationChanged
+ 1131: Protected Sub hidden_btn_user_filter_Click(sender As Object, e As EventArgs) Handles hidden_btn_user_filter.Click
+ 1137: Protected Sub hidden_btn_date_filter_Click(sender As Object, e As EventArgs) Handles hidden_btn_date_filter.Click
+ 1169: Protected Sub btn_download_report_Click(sender As Object, e As ImageClickEventArgs) Handles btn_download_report.Click
+ 1332: Protected Sub btn_category_inventory_Click(sender As Object, e As EventArgs) Handles btn_category_inventory.Click
+ 1338: Protected Sub btn_category_inventory_check_in_Click(sender As Object, e As EventArgs) Handles btn_category_inventory_check_in.Click
+ 1343: Protected Sub btn_category_inventory_check_out_Click(sender As Object, e As EventArgs) Handles btn_category_inventory_check_out.Click
+ 1348: Protected Sub btn_category_inventory_transfer_Click(sender As Object, e As EventArgs) Handles btn_category_inventory_transfer.Click
+ 1353: Protected Sub btn_category_products_Click(sender As Object, e As EventArgs) Handles btn_category_products.Click
+ 1358: Protected Sub btn_category_products_create_Click(sender As Object, e As EventArgs) Handles btn_category_products_create.Click
+ 1363: Protected Sub btn_category_products_delete_Click(sender As Object, e As EventArgs) Handles btn_category_products_delete.Click
+ 1368: Protected Sub btn_category_products_edit_Click(sender As Object, e As EventArgs) Handles btn_category_products_edit.Click
+ 1373: Protected Sub btn_category_locations_Click(sender As Object, e As EventArgs) Handles btn_category_locations.Click
+ 1378: Protected Sub btn_category_locations_create_Click(sender As Object, e As EventArgs) Handles btn_category_locations_create.Click
+ 1383: Protected Sub btn_category_locations_delete_Click(sender As Object, e As EventArgs) Handles btn_category_locations_delete.Click
+ 1388: Protected Sub btn_category_locations_edit_Click(sender As Object, e As EventArgs) Handles btn_category_locations_edit.Click
+ 1393: Protected Sub btn_category_all_Click(sender As Object, e As EventArgs) Handles btn_category_all.Click
+ 1397: Protected Sub btn_category_inventory_adjust_Click(sender As Object, e As EventArgs) Handles btn_category_inventory_adjust.Click
+
+===== AddProducts.aspx.vb (4) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  297: Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+  522: Protected Sub btn_import_from_file_Click(sender As Object, e As EventArgs) Handles btn_import_from_file.Click
+  531: Protected Sub btn_upload_Click(sender As Object, e As EventArgs) Handles btn_upload.Click
+
+===== ai-report.aspx.vb (1) =====
+   13: Protected Sub ai_report_init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== BillingHistory.aspx.vb (1) =====
+   12: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Blog.aspx.vb (1) =====
+    5: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== CheckInCreatedProducts.aspx.vb (4) =====
+   13: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  134: Protected Sub btn_skip_return_Click(sender As Object, e As EventArgs) Handles btn_skip_return.Click
+  141: Protected Sub btn_continue_transfer_Click(sender As Object, e As EventArgs) Handles btn_continue_transfer.Click
+  185: Protected Sub btn_checkin_Click(sender As Object, e As EventArgs) Handles btn_checkin.Click
+
+===== ConfirmationDialog.aspx.vb (2) =====
+   37: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   87: Protected Sub btn_yes_delete_Click(sender As Object, e As EventArgs) Handles btn_yes_delete.Click
+
+===== DocumentEditor.aspx.vb (1) =====
+    9: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Expirations.aspx.vb (1) =====
+   14: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Expirations_read_only.aspx.vb (1) =====
+   14: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== ExportReport.aspx.vb (3) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  472: Protected Sub btn_export_Click(sender As Object, e As EventArgs) Handles btn_export.Click
+  519: Protected Sub location_selector_LocationChanged(sender As Object, e As EventArgs) Handles location_selector.LocationChanged
+
+===== ImportFromFile.aspx.vb (5) =====
+   25: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  112: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  446: Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+  450: Protected Sub btn_confirm_existing_Click(sender As Object, e As EventArgs) Handles btn_confirm_existing.Click
+  765: Protected Sub btn_cancel_Click(sender As Object, e As EventArgs) Handles btn_cancel.Click
+
+===== Kitting.aspx.vb (1) =====
+   13: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== LocationEditor.aspx.vb (7) =====
+  125: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  576: Private Sub Child_List_Click_ImageButton(sender As Object, e As EventArgs)
+  585: Private Sub Child_List_Click_Button(sender As Object, e As EventArgs)
+  593: Private Sub Child_List_Click_Breadcrumb(sender As Object, e As EventArgs)
+  611: Protected Sub CS_LocationSelector1_LocationChanged(sender As Object, e As EventArgs) Handles CS_LocationSelector1.LocationChanged
+  620: Protected Sub hidden_barcode_btn_Click(sender As Object, e As EventArgs) Handles hidden_barcode_btn.Click
+  642: Protected Sub _upload_attachment(sender As Object, e As EventArgs) Handles btn_upload_attachment.Click
+
+===== Login.aspx.vb (4) =====
+   14: Protected Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login.Click
+   53: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  242: Protected Sub btn_password_reset_Click(sender As Object, e As EventArgs) Handles btn_password_reset.Click
+  341: Protected Sub btnGoogleLogin_Click(sender As Object, e As EventArgs) Handles btnGoogleLogin.Click
+
+===== Map.aspx.vb (3) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   20: Private Sub MAP_CONTROL_1_HoverDiv_ViewLocation(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.HoverDiv_ViewLocation
+   24: Private Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+
+===== mapDashboardTest.aspx.vb (1) =====
+    5: Private Sub mapDashboardTest_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== MapDesignerNaked.aspx.vb (1) =====
+    5: Protected Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+
+===== MapProductEditorNaked.aspx.vb (2) =====
+    5: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   11: Protected Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+
+===== map_demo.aspx.vb (3) =====
+    7: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+   66: 'Protected Sub btn_back_Click(sender As Object, e As EventArgs) Handles btn_back.Click
+   70: Protected Sub btn_next_Click(sender As Object, e As EventArgs) Handles btn_next.Click
+
+===== Map_read_only.aspx.vb (3) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   18: Private Sub MAP_CONTROL_1_HoverDiv_ViewLocation(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.HoverDiv_ViewLocation
+   22: Private Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+
+===== MOBILE_LocationSelector.aspx.vb (1) =====
+   15: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== mobile_main.aspx.vb (4) =====
+   53: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   60: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  917: Private Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
+  931: Protected Sub btn_view_products_hidden_Click(sender As Object, e As EventArgs) Handles btn_view_products_hidden.Click
+
+===== MOBILE_MasterPage.master.vb (3) =====
+   28: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   83: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  327: 'Protected Sub btn_logout_Click(sender As Object, e As EventArgs) Handles btn_logout.Click
+
+===== MOBILE_Process.aspx.vb (5) =====
+   15: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  167: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+  326: Protected Sub btn_mobile_transfer_modal_done_Click(sender As Object, e As EventArgs) Handles btn_mobile_transfer_modal_done.Click
+  330: Protected Sub btn_finish_Click(sender As Object, e As EventArgs) Handles btn_finish.Click
+  559: Protected Sub btn_setDefault_location_Click(sender As Object, e As EventArgs) Handles btn_setDefault_location.Click
+
+===== MOBILE_ProductEditor.aspx.vb (1) =====
+   10: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== MOBILE_Products.aspx.vb (1) =====
+   12: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== MOBILE_ProductSelector.aspx.vb (2) =====
+   12: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   38: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+===== MOBILE_QuickAdd.aspx.vb (2) =====
+   12: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   24: Protected Sub btn_create_product_Click(sender As Object, e As EventArgs) Handles btn_create_product.Click
+
+===== MOBILE_QuickScan.aspx.vb (1) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== MOBILE_Transfer.aspx.vb (1) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== NewLocation.aspx.vb (1) =====
+   11: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== PrintBarcode.aspx.vb (2) =====
+   10: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  117: Protected Sub btn_preview_Click(sender As Object, e As EventArgs) Handles btn_preview.Click
+
+===== ProductEditor.aspx.vb (6) =====
+  172: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  466: Protected Sub btn_clone_product_Click(sender As Object, e As EventArgs) Handles btn_clone_product.Click
+  630: Protected Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+  668: Protected Sub _upload_image(sender As Object, e As EventArgs) Handles btn_upload_image.Click
+  690: Protected Sub _upload_attachment(sender As Object, e As EventArgs) Handles btn_upload_attachment.Click
+  732: Protected Sub btn_delete2_Click(sender As Object, e As EventArgs) Handles btn_delete2.Click
+
+===== ProductEditor_read_only.aspx.vb (2) =====
+   26: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  422: Protected Sub MAP_CONTROL_1_RefreshRequired(sender As Object, e As EventArgs) Handles MAP_CONTROL_1.RefreshRequired
+
+===== Products.aspx.vb (18) =====
+   45: Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
+   78: Protected Sub Page_LoadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.LoadComplete
+  636: Protected Sub SearchFunctionNoAutopostback(ByVal sender As Object, ByVal e As System.EventArgs) Handles FORCE_CUSTOM_SEARCH.Click
+  675: Protected Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gridview.PageIndexChanging
+  730: Protected Sub btn_ColumnAdjust(sender As Object, e As EventArgs) Handles btn_AdjustColumns.Click
+  857: Protected Sub GridView1_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gridview.RowDataBound
+ 1085: Protected Sub GridView1_Sorting(sender As Object, e As GridViewSortEventArgs) Handles gridview.Sorting
+ 1185: Protected Sub ForceRedirect(sender As Object, e As EventArgs) Handles FORCE_CLEAR_FILTER.Click
+ 1188: Protected Sub HiddenBtn_Click(sender As Object, e As EventArgs) Handles HiddenBtn.Click
+ 1397: Protected Sub HiddenBtn2_Click(sender As Object, e As EventArgs) Handles HiddenBtn2.Click
+ 1403: 'Protected Sub btn_image_toggle_Click(sender As Object, e As ImageClickEventArgs) Handles btn_image_toggle.Click
+ 1431: Protected Sub BTN_HIDDEN_Click(sender As Object, e As EventArgs) Handles BTN_HIDDEN.Click
+ 1435: Protected Sub HiddenBtn_LOCATION_Click(sender As Object, e As EventArgs) Handles HiddenBtn_LOCATION.Click
+ 2117: Protected Sub btn_MultiEdit_UPDATE_Click(sender As Object, e As EventArgs) Handles btn_MultiEdit_UPDATE.Click
+ 2124: Protected Sub LocationSelector_control_LocationChanged(sender As Object, e As EventArgs) Handles LocationSelector_control.LocationChanged
+ 2136: Protected Sub btn_delete_Click(sender As Object, e As ImageClickEventArgs) Handles btn_delete.Click
+ 2144: Protected Sub btn_export_report_Click(sender As Object, e As EventArgs) Handles btn_export_report.Click
+ 2150: Protected Sub btn_print_barcodes_Click(sender As Object, e As ImageClickEventArgs) Handles btn_print_barcodes.Click
+
+===== ProductSelector.aspx.vb (2) =====
+   16: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  126: Protected Sub location_selector_LocationChanged(sender As Object, e As EventArgs) Handles location_selector.LocationChanged
+
+===== Products_read_only.aspx.vb (15) =====
+   46: Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
+   75: Protected Sub Page_LoadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.LoadComplete
+  587: Protected Sub SearchFunctionNoAutopostback(ByVal sender As Object, ByVal e As System.EventArgs) Handles FORCE_CUSTOM_SEARCH.Click
+  626: Protected Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles gridview.PageIndexChanging
+  681: Protected Sub btn_ColumnAdjust(sender As Object, e As EventArgs) Handles btn_AdjustColumns.Click
+  808: Protected Sub GridView1_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gridview.RowDataBound
+ 1036: Protected Sub GridView1_Sorting(sender As Object, e As GridViewSortEventArgs) Handles gridview.Sorting
+ 1134: Protected Sub ForceRedirect(sender As Object, e As EventArgs) Handles FORCE_CLEAR_FILTER.Click
+ 1137: Protected Sub HiddenBtn_Click(sender As Object, e As EventArgs) Handles HiddenBtn.Click
+ 1180: Protected Sub HiddenBtn2_Click(sender As Object, e As EventArgs) Handles HiddenBtn2.Click
+ 1185: Protected Sub BTN_HIDDEN_Click(sender As Object, e As EventArgs) Handles BTN_HIDDEN.Click
+ 1189: Protected Sub HiddenBtn_LOCATION_Click(sender As Object, e As EventArgs) Handles HiddenBtn_LOCATION.Click
+ 1738: Protected Sub LocationSelector_control_LocationChanged(sender As Object, e As EventArgs) Handles LocationSelector_control.LocationChanged
+ 1750: Protected Sub btn_export_report_Click(sender As Object, e As EventArgs) Handles btn_export_report.Click
+ 1756: Protected Sub btn_print_barcodes_Click(sender As Object, e As ImageClickEventArgs) Handles btn_print_barcodes.Click
+
+===== ProfileRequired.aspx.vb (2) =====
+    8: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   19: Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+
+===== Settings.aspx.vb (5) =====
+   25: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  180: Protected Sub btn_password_reset_click(sender As Object, e As EventArgs) Handles btn_password_reset.Click
+  195: Protected Sub btn_google_login_click(sender As Object, e As EventArgs) Handles btnGoogleLogin.Click
+  349: 'Protected Sub btn_lansweeper_sync_click(sender As Object, e As EventArgs) Handles btn_lansweeper_SYNC.Click
+  353: 'Protected Sub btn_lansweeper_Disconnect_Click(sender As Object, e As EventArgs) Handles btn_lansweeper_Disconnect.Click
+
+===== Start.aspx.vb (5) =====
+   13: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  292: Protected Sub btn_finish_add_Click(sender As Object, e As EventArgs) Handles btn_finish_add.Click
+  295: Protected Sub btn_finish_checkout_Click(sender As Object, e As EventArgs) Handles btn_finish_checkout.Click
+  299: Protected Sub btn_comment_save_Click(sender As Object, e As EventArgs) Handles btn_comment_save.Click
+  310: Protected Sub btn_transfer_complete_Click(sender As Object, e As EventArgs) Handles btn_transfer_complete.Click
+
+===== SuccessProducts.aspx.vb (1) =====
+    7: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Terms.aspx.vb (1) =====
+    9: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Transfer.aspx.vb (3) =====
+   69: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  742: Protected Sub LocationSelector_Destination_LocationChanged(sender As Object, e As EventArgs) Handles LocationSelector_Destination.LocationChanged
+  753: Protected Sub LocationSelector_Source_LocationChanged(sender As Object, e As EventArgs) Handles LocationSelector_Source.LocationChanged
+
+===== UpdateAccount.aspx.vb (1) =====
+   15: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== UserPage.master.vb (6) =====
+   41: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  320: Protected Sub BTN_LOGOUT_Click(sender As Object, e As EventArgs) Handles BTN_LOGOUT.Click
+  329: Protected Sub CS_SEARCHBOX1_AC_LocationSearched(sender As Object, e As EventArgs) Handles CS_SEARCHBOX1.AC_LocationSearched
+  334: Protected Sub CS_SEARCHBOX1_AC_ProductSearched(sender As Object, e As EventArgs) Handles CS_SEARCHBOX1.AC_ProductSearched
+  339: Protected Sub CS_SEARCHBOX1_AC_QuerySearchRequested(sender As Object, e As EventArgs) Handles CS_SEARCHBOX1.AC_QuerySearchRequested
+  346: Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+===== UserPageNoMenu.master.vb (1) =====
+   18: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== Welcome.aspx.vb (2) =====
+   16: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+  239: Protected Sub btn_next_Click(sender As Object, e As EventArgs) Handles btn_next.Click
+
+===== _lansweeper-callback.aspx.vb (1) =====
+   17: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+
+===== _locationSelectorToggle.aspx.vb (3) =====
+   21: Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+   50: Protected Sub btn_save_location_Click(sender As Object, e As EventArgs) Handles btn_save_location.Click
+   65: Protected Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
