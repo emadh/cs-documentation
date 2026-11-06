@@ -4,7 +4,7 @@ Code-grounded inventory of user-facing pages and shared UI. Marketing landing pa
 
 Routes use ASP.NET friendly URLs (`App_Code/RouteConfig.vb`), so `/Products` and `/Products.aspx` are the same page.
 
-Confidence: page existence, master page, and the permission rules below are confirmed in source. Detailed feature behavior is cataloged separately in `FEATURE_CATALOG.md`.
+Confidence: page existence, master page, and the permission rules below are confirmed in source. Detailed feature behavior is cataloged separately in `FEATURE_CATALOG.md`. Feature IDs are listed in `SUMMARY.md`. This inventory matches website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e` (see `CATALOG_BASELINE.txt`).
 
 ## Access model
 

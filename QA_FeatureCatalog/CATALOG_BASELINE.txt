@@ -1,0 +1,9 @@
+repo: cs-website
+commit: e8172b5c35b4e32a77ea28569ae82ad28ed83f8e
+branch: mobile-responsive
+dirty: yes
+updated: 2026-11-06
+dirty paths:
+  M .vs/CS Website/v16/.suo
+  ?? .cursor/
+note: Those dirty paths are IDE state and the catalog slash command. They do not change user-facing product behavior. The catalog describes the committed application source at the SHA above. The next run should diff this commit and ignore those paths unless they start containing product code.

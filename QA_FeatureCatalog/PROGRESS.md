@@ -4,26 +4,28 @@ Statuses: Not started | In progress | Cataloged | Second-pass verified | Blocked
 
 This file is the session checklist. Stable feature IDs are assigned only in `FEATURE_CATALOG.md` and must not be renumbered later.
 
+Baseline: website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e` on `mobile-responsive`. See `CATALOG_BASELINE.txt`. The next catalog update should diff that commit rather than re-read the whole application.
+
 | Module | Status | Notes |
 | --- | --- | --- |
-| Page inventory | In progress | `PAGE_INVENTORY.md` drafted from masters, routes, and code-behind visibility |
-| Shell / navigation | In progress | `UserPage.master`, `MOBILE_MasterPage.master` |
-| Map and locations | In progress | Parallel code trace of `Map_CONTROL_2017.ascx` and location editors |
-| Products and product editor | In progress | Products grid, editor, clone, delete, images, documents, barcodes |
-| Add products and import | In progress | `AddProducts.aspx`, `ImportFromFile.aspx` |
-| Inventory movement | In progress | Start, Transfer, map drag, mobile process, QuickScan |
-| Activity | In progress | History, details, filters, export |
-| Expirations | In progress | Page plus display settings |
-| Kitting | In progress | Page exists; Settings kitting toggle is `display:none` |
-| Settings, team, custom fields | Cataloged | Research in `_research/SETTINGS_ACCOUNT.md`. IDs `SET-*`, `TEAM-*`, `CFL-*`, `DEF-*`, `DSP-*`, `ACCSET-*` in `FEATURE_CATALOG.md`. Second pass not done. |
-| Subscription and billing | Cataloged | IDs `SUB-*`. Banners are markup-only. Stripe self-serve is conditional. |
-| API and Lansweeper | Cataloged | Live UI is request-access. Popup pipeline recorded as not linked from Settings (`LSW-*`, `API-*`). |
-| Account, login, onboarding | Cataloged | IDs `ACC-*`. Welcome redirects to Map and is not a wizard. Getting-started guide is still with the activity trace. |
-| Search | In progress | Global `CS_SearchBox` |
-| Mobile home | In progress | `mobile_main.aspx` |
-| Second-pass traceability | Not started | Compare `_extract/ui-controls.txt` and `event-handlers.txt` to catalog IDs |
-| Workflows | Not started | After feature IDs exist |
-| Discovery report and maintenance | Not started | After counts are stable |
+| Page inventory | Cataloged | `PAGE_INVENTORY.md`. Not yet annotated with every feature ID. |
+| Shell / navigation | Cataloged | Covered by page inventory and SRCH-001, ACT-006, XFR-012. No separate SHELL IDs. |
+| Map and locations | Cataloged | `MAP-001` through `MAP-044` in `FEATURE_CATALOG.md`. |
+| Products and product editor | Cataloged | `PRD-*` and `PED-*`. |
+| Add products and import | Cataloged | `PED-010` through `PED-014`, workflows WF-001, WF-007, WF-008. |
+| Inventory movement | Cataloged | `XFR-*`. Transfer and Start stock math stay separate. |
+| Activity | Cataloged | `ACT-*`. |
+| Expirations | Cataloged | `EXP-*`, window is `DSP-005`. |
+| Kitting | Cataloged | `KIT-*`. Settings toggle remains unwired (`DSP-008`). |
+| Settings, team, custom fields | Cataloged | `SET-*`, `TEAM-*`, `CFL-*`, `DEF-*`, `DSP-*`, `ACCSET-*`. |
+| Subscription and billing | Cataloged | `SUB-*`. Banners are markup-only. |
+| API and Lansweeper | Cataloged | `API-*`, `LSW-*`. Live UI is the support request. |
+| Account, login, onboarding | Cataloged | `ACC-*`. Welcome and getting-started redirect to the map. |
+| Search | Cataloged | `SRCH-001` and `PRD-006`. |
+| Mobile home | Cataloged | `XFR-012`, `XFR-008`, `XFR-009`, `MAP-044`. |
+| Second-pass traceability | Not started | `_extract/ui-controls.txt` and `event-handlers.txt` are not yet mapped ID by ID. |
+| Workflows | Cataloged | `WORKFLOW_CATALOG.md`, `WF-001` through `WF-013`. |
+| Discovery report and maintenance | Cataloged | Maintenance is `.cursor/commands/kb-update.md` in the website repo. A counts report was not given its own file. |
 
 ## Confirmed access rules (do not rediscover)
 
