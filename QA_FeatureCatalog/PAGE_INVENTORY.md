@@ -4,7 +4,7 @@ Code-grounded inventory of user-facing pages and shared UI. Marketing landing pa
 
 Routes use ASP.NET friendly URLs (`App_Code/RouteConfig.vb`), so `/Products` and `/Products.aspx` are the same page.
 
-Confidence: page existence, master page, and the permission rules below are confirmed in source. Detailed feature behavior is cataloged separately in `FEATURE_CATALOG.md`. Feature IDs are listed in `SUMMARY.md`. This inventory matches website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e` (see `CATALOG_BASELINE.txt`).
+Confidence: page existence, master page, and the permission rules below are confirmed in source. Detailed feature behavior is cataloged separately in `FEATURE_CATALOG.md`. Feature IDs are listed in `SUMMARY.md` and mapped to pages at the end of this file. This inventory matches website commit `a4f1fc6b686294b7c00c692b744565efd5dc447d` (see `CATALOG_BASELINE.txt`). The application source is the same product behavior as `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e`; the later commit only updates the catalog command.
 
 ## Access model
 
@@ -86,8 +86,8 @@ These use `UserPageNoMenu.master` unless noted. Most open in a Fancybox iframe f
 | PG-CHECKIN-CREATED-DONE | Check-in finished | `/CheckInCreatedProductsDone.aspx` | Completion screen. No code-behind. | After check-in of created products |
 | PG-EDITOR | Product editor | `/ProductEditor.aspx` | Edit one product: fields, image, attachment, clone, delete, quantity map | Product row / name |
 | PG-EDITOR-RO | Product editor read-only | `/ProductEditor_read_only.aspx` | View a product without edit handlers for clone, image, attachment, delete | Read-only product open |
-| PG-CLONE | Old clone popup | `/Popups/CloneProduct.aspx` | Fields are locked and there is no save button. The live clone is a modal on Product Editor. No other page links here. | Direct URL only | Not the live clone |
-| PG-DELETE-PRODUCT | Delete products confirm | `/Dialogs/ProductDeleteConfirmation.aspx` | Confirm product deletion | Products delete |
+| PG-CLONE | Old clone popup | `/Popups/CloneProduct.aspx` | Not a working screen. Fields are locked and there is no save. The live clone is the product-editor modal (PED-007). | Direct URL only |
+| PG-DELETE-PRODUCT | Old quantity-delete dialog | `/Dialogs/ProductDeleteConfirmation.aspx` | Not the live delete. Nothing in the live toolbar sets it up. Live delete is the product list and the product editor (PRD-011, PED-008). | Direct URL only |
 | PG-CONFIRM | Generic confirm | `/ConfirmationDialog.aspx` | Yes/delete confirmation. Map delete uses `?ACTION=DELETE&LocationID=` | Map delete |
 | PG-FIXED-FIELDS | Fixed multi fields | `/Popups/FixedMultiFields.aspx` | Save preset values for a multi-value field | Product / custom field UI |
 | PG-LOC-EDITOR | Location editor | `/LocationEditor.aspx` | Edit an existing location (`LoadType=EXISTING&LocationID=`) or create. Child list, barcode, attachment. | Map Edit |
@@ -99,7 +99,7 @@ These use `UserPageNoMenu.master` unless noted. Most open in a Fancybox iframe f
 | PG-PRINT | Print barcodes | `/PrintBarcode.aspx` | Barcode label preview | Products "Print barcodes" |
 | PG-EXPORT | Export report | `/ExportReport.aspx` | Build and download a product/quantity report. Location selector included. | Products download; map "Download Quantity Report" opens a related modal on the map itself |
 | PG-ACTIVITY-DETAIL | Activity details | `/ActivityDetails.aspx` | One activity record | Activity history row |
-| PG-DOC | Document editor | `/DocumentEditor.aspx` | View or edit an attached document | Product or location attachment |
+| PG-DOC | Document editor | `/DocumentEditor.aspx` | Not a working document screen. Direct address only. The heading and placeholder labels do not print, save, or continue. Product attachments are PED-003. | Direct URL only |
 | PG-PROFILE | Required profile | `/ProfileRequired.aspx` | Force a display name (and related profile fields) | Auto-opened when the name is blank |
 | PG-WELCOME | Welcome | `/Welcome.aspx` | Immediately redirects to `/Map`. The profile and demo-data code below that redirect does not run. | Any request to the page | Not a setup wizard |
 | PG-GUIDE | Getting started | `/pages/guides/getting-started.aspx` | `Page_Init` redirects to `/Map` before the wizard runs. The step machine remains in the file and is not reachable on this request. | Direct URL, and older redirects from Welcome and `map_demo` | Not a live wizard |
@@ -107,7 +107,7 @@ These use `UserPageNoMenu.master` unless noted. Most open in a Fancybox iframe f
 | PG-UPDATE-ALERT | Plan or payment alert | `/UpdateAlert.aspx` | Banner plus an iframe of Update Account. Current query handling makes the trial sentence unreachable. Settings does not auto-open this page. | Hidden anchors on Settings | Not confirmed as a live step |
 | PG-BILLING | Billing history | `/BillingHistory.aspx` | Next payment, then charges: Date, Amount, Subscription, Status | Admin only | “Billing History” when the payment method text contains “Stripe” |
 | PG-LOC-DEFAULT | Default location picker | `/_locationSelectorToggle.aspx?type=defaultcheckin` or `defaultcheckout` | Pick or clear the user's default check-in or check-out location | Settings Default Locations |
-| PG-SUCCESS-PRODUCTS | Products created | `/SuccessProducts.aspx` | Success screen after product creation | Create flow |
+| PG-SUCCESS-PRODUCTS | Products created | `/SuccessProducts.aspx` | Not opened by the create flow in this repo. Live success after creating products is the check-in page (XFR-007, WF-001). | Direct URL only |
 | PG-AI-REPORT | AI insights | `/ai-report.aspx?id=` | Renders one stored insights report (“Your Inventory Insights”, badge “AI-GENERATED”). Any exception, including a bad id, goes to Map. | Signed-in. No menu link anywhere in this repo. | Direct URL only |
 | PG-OAUTH-AUTH | OAuth authorize | `/OAuth2/auth.aspx` | OAuth authorization entry | External API client |
 | PG-OAUTH-CONSENT | OAuth consent | `/OAuth2/consent.aspx` | Allow or cancel an OAuth consent | External API client |
@@ -137,8 +137,8 @@ Master: `MOBILE_MasterPage.master`.
 | PG-M-TRANSFER | `MOBILE_Transfer.aspx` | Transfer UI used when a map drop happens on a narrow viewport |
 | PG-M-QSCAN | `MOBILE_QuickScan.aspx` | Full-page QuickScan |
 | PG-M-QADD | `MOBILE_QuickAdd.aspx` | Create a product from a scan that did not match |
-| PG-M-PRODUCTS | `MOBILE_Products.aspx` | Mobile product list |
-| PG-M-EDITOR | `MOBILE_ProductEditor.aspx` | Mobile product editor |
+| PG-M-PRODUCTS | `MOBILE_Products.aspx` | Not linked from the menus or pages searched in this repo. Do not treat it as the live product list. The live list is `/Products` (PRD-001), including on a phone. |
+| PG-M-EDITOR | `MOBILE_ProductEditor.aspx` | Not linked from the menus or pages searched in this repo. Do not treat it as the live editor. The live editor is `/ProductEditor` (PED-001). |
 | PG-M-LOC | `MOBILE_LocationSelector.aspx` | Pick a location during a mobile process |
 | PG-M-PSEL | `MOBILE_ProductSelector.aspx` | Pick products during a mobile process |
 | PG-M-MAP | `Mobile/Map.aspx` | Redirects to `/_admin/_unauthorized` before the 2018 map can render. The live phone map is `Map.aspx`. |
@@ -151,7 +151,7 @@ Master: `MOBILE_MasterPage.master`.
 | ID | Control | Role |
 | --- | --- | --- |
 | PG-C-MAP | `Controls/Map_CONTROL_2017.ascx` | Desktop and responsive map: locations, hover tools, drag, filter, zoom, settings, export, clone, 3D and vertical display |
-| PG-C-MAP-M | `Controls/Map_CONTROL_MOBILE_2018.ascx` | Older mobile map control. Still has delete, save coordinates, update quantity, transfer, create, and view postbacks. |
+| PG-C-MAP-M | `Controls/Map_CONTROL_MOBILE_2018.ascx` | Not the live phone map. `Mobile/Map.aspx` redirects before this control is a customer screen. The live phone map is `Map.aspx` with `Map_CONTROL_2017` (MAP-044). |
 | PG-C-DASH | `Controls/mapDashboard.ascx` | Map dashboard widget |
 | PG-C-LOCSEL | `Controls/LocationSelector_CONTROL.ascx` | Location tree / breadcrumb used by Products, Activity, Transfer, Export, Product Selector |
 | PG-C-SEARCH | `Controls/CS_SearchBox.ascx` | Header search |
@@ -193,8 +193,7 @@ Editable `Products.aspx` toolbar:
 - Column picker, Save Columns
 - Download product report
 - Print barcodes for the selection (shown when a selection exists)
-- Show or hide product images
-- Printable version (`/Products?printable=true`)
+- Printable version (`/Products?printable=true`). The toolbar camera that would hide photos is not on the page. Photos follow the Settings product-images switch (DSP-002, PRD-009).
 - Grid sorting and paging (first / last / numeric)
 - Location selector
 - Hidden postbacks for custom search, clear filter, check fields, custom properties, and load stockroom
@@ -230,6 +229,52 @@ Account settings (admin): time zone list from GMT-12 through GMT+13 (two entries
 Subscription (admin): card filled by `js/business/subscription.js`. Self-serve Update Plan, Change Card, Cancel, and Billing History render only when the payment-method text contains “Stripe”. Other methods show a note to email admin@cyberstockroom.com. Trial, upgrade, and payment banners exist in the page and stay `display: none`. Nothing in the current Settings load calls `ToggleExpiry`, `ToggleUpgrade`, or `TogglePayment`. Do not describe a plan-capacity limit; no writer for the “exceeded the capacity” banner was found.
 
 Trial length, used by the billing gate, is 14 days from `Accounts.DateCreated` while `ConfirmedPayment` is 0.
+
+## Feature IDs on each page
+
+The same feature can appear on more than one page. Removed or unwired screens are not given live steps.
+
+| Page | Feature IDs |
+| --- | --- |
+| PG-SHELL-DESKTOP, PG-SHELL-MOBILE-NAV | SRCH-001, ACT-006, SET-001. Menu links open MAP-001, PRD-001, XFR-006, XFR-011, ACT-001, EXP-001, KIT-001. |
+| PG-LOGIN | ACC-001, ACC-002, ACC-003, ACC-004 |
+| PG-MAP, PG-C-MAP | MAP-001, MAP-003, MAP-004, MAP-005, MAP-008, MAP-009, MAP-010, MAP-011, MAP-012, MAP-013, MAP-014, MAP-015, MAP-016, MAP-017, MAP-018, MAP-019, MAP-020, MAP-021, MAP-022, MAP-023, MAP-024, MAP-025, MAP-027, MAP-028, MAP-029, MAP-030, MAP-031, MAP-032, MAP-033, MAP-034, MAP-035, MAP-036, MAP-037, MAP-042, MAP-044 |
+| PG-MAP-RO | MAP-002, MAP-004, MAP-017, MAP-018, MAP-024, MAP-027, MAP-029, MAP-031, MAP-032, MAP-035, MAP-038, MAP-044 |
+| PG-PRODUCTS | PRD-001, PRD-002, PRD-003, PRD-004, PRD-005, PRD-006, PRD-007, PRD-008, PRD-009, PRD-010, PRD-011 |
+| PG-PRODUCTS-RO | PRD-001, PRD-002, PRD-003, PRD-004, PRD-006, PRD-007, PRD-008, PRD-009, PRD-011. No delete, multi-edit, or quantity editor. |
+| PG-START, PG-SELECTOR | XFR-006, PED-016, DEF-001, DEF-002 |
+| PG-ACTIVITY | ACT-001, ACT-002, ACT-003, ACT-004, ACT-007 |
+| PG-ACTIVITY-DETAIL | ACT-005 |
+| PG-EXPIRATIONS | EXP-001, EXP-002, DSP-004, DSP-005 |
+| PG-EXPIRATIONS-RO | EXP-001. No manage button. |
+| PG-KITTING | KIT-001, KIT-002. KIT-003 is drawn and is not a working action. |
+| PG-SETTINGS | SET-001, SET-002, SET-003, ACC-008, ACC-009, ACC-010, ACC-011, ACC-012, ACC-013, TEAM-001, TEAM-002, TEAM-003, TEAM-004, CFL-001, CFL-002, CFL-003, CFL-004, CFL-005, CFL-006, DEF-001, DEF-002, API-001, API-002, LSW-001, DSP-001, DSP-002, DSP-003, DSP-004, DSP-005, DSP-006, DSP-007, ACCSET-001, ACCSET-002, SUB-001, SUB-002, SUB-004. DSP-008 is hidden and unwired. |
+| PG-MOBILE-HOME, PG-SHELL-MOBILE | XFR-012, MAP-043, XFR-008 |
+| PG-ADD | PED-010, PED-011 |
+| PG-IMPORT | PED-012, PED-013, PED-014 |
+| PG-CHECKIN-CREATED, PG-CHECKIN-CREATED-DONE | XFR-007 |
+| PG-EDITOR | PED-001, PED-002, PED-003, PED-004, PED-005, PED-006, PED-007, PED-008, MAP-026 |
+| PG-EDITOR-RO | PED-009, PED-004, PED-005 |
+| PG-FIXED-FIELDS | CFL-006 |
+| PG-LOC-EDITOR, PG-NEW-LOC | MAP-005, MAP-006, MAP-007, MAP-039, MAP-040, MAP-041, MAP-042 |
+| PG-PEEK | MAP-038 |
+| PG-TRANSFER, PG-M-TRANSFER | XFR-001, XFR-002, XFR-003, XFR-004, XFR-005 |
+| PG-QUICKSCAN, PG-M-QSCAN | XFR-011, MAP-041 |
+| PG-PRINT | PED-015 |
+| PG-EXPORT | RPT-001. The map quantity file is MAP-032 and is not this page. |
+| PG-PROFILE | ACC-007, ACC-008 |
+| PG-UPDATE-ACCOUNT | SUB-002, ACC-005 |
+| PG-BILLING | SUB-003 |
+| PG-LOC-DEFAULT | DEF-001, DEF-002 |
+| PG-OAUTH-CONSENT | ACC-015 |
+| PG-M-PROCESS, PG-M-LOC | XFR-008, XFR-009 |
+| PG-M-QADD, PG-M-PSEL | XFR-010 |
+| PG-AI-REPORT | RPT-002. No menu link. Not a supported step in the customer source. |
+| PG-WELCOME, PG-GUIDE | ACC-006. Both redirect to the map before a wizard runs. |
+| PG-CLONE, PG-DELETE-PRODUCT, PG-DOC, PG-SUCCESS-PRODUCTS | PED-017, PED-018. Not live screens. |
+| PG-LS-SITES, PG-LS-FIELDS, PG-LS-CATS, PG-LS-LINK, PG-LS-OK, PG-LS-FAIL | LSW-002, LSW-003, LSW-004, LSW-005. Not linked from current Settings. |
+| PG-M-MAP, PG-M-MAP-EDITOR, PG-C-MAP-M | Not live. MAP-044 is the phone map. |
+| PG-M-PRODUCTS, PG-M-EDITOR | No live link found. No separate feature ID. |
 
 ## Pages reviewed and excluded
 

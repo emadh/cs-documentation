@@ -2,7 +2,7 @@
 
 Cross-page sequences for the knowledge base. Each step is what the user does. The feature ID in parentheses is the walkthrough in `FEATURE_CATALOG.md`. IDs here are stable (`WF-###`). Do not renumber them.
 
-These match website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e`. Where an API outside this repo finishes the stock change, the step says that outcome is Uncertain.
+These match website commit `a4f1fc6b686294b7c00c692b744565efd5dc447d`. Product behavior is unchanged from `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e`. Where an API outside this repo finishes the stock change, the step says that outcome is Uncertain.
 
 ## WF-001 — Create products and check them in
 

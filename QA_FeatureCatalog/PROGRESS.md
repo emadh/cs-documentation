@@ -4,11 +4,11 @@ Statuses: Not started | In progress | Cataloged | Second-pass verified | Blocked
 
 This file is the session checklist. Stable feature IDs are assigned only in `FEATURE_CATALOG.md` and must not be renumbered later.
 
-Baseline: website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e` on `mobile-responsive`. See `CATALOG_BASELINE.txt`. The next catalog update should diff that commit rather than re-read the whole application.
+Baseline: website commit `a4f1fc6b686294b7c00c692b744565efd5dc447d` on `mobile-responsive`. See `CATALOG_BASELINE.txt`. Product behavior is unchanged from `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e`. The next catalog update should diff the new commit rather than re-read the whole application.
 
 | Module | Status | Notes |
 | --- | --- | --- |
-| Page inventory | Cataloged | `PAGE_INVENTORY.md`. Not yet annotated with every feature ID. |
+| Page inventory | Cataloged | `PAGE_INVENTORY.md`, including feature IDs per page. Not-live screens are labeled as not working. |
 | Shell / navigation | Cataloged | Covered by page inventory and SRCH-001, ACT-006, XFR-012. No separate SHELL IDs. |
 | Map and locations | Cataloged | `MAP-001` through `MAP-044` in `FEATURE_CATALOG.md`. |
 | Products and product editor | Cataloged | `PRD-*` and `PED-*`. |
@@ -23,6 +23,7 @@ Baseline: website commit `e8172b5c35b4e32a77ea28569ae82ad28ed83f8e` on `mobile-r
 | Account, login, onboarding | Cataloged | `ACC-*`. Welcome and getting-started redirect to the map. |
 | Search | Cataloged | `SRCH-001` and `PRD-006`. |
 | Mobile home | Cataloged | `XFR-012`, `XFR-008`, `XFR-009`, `MAP-044`. |
+| Customer support source | Cataloged | `KNOWLEDGE_BASE_SOURCE.md`. 141 included features, 10 excluded. Internal classification is `_research/KB_SOURCE_VALIDATION.md`. Not published. |
 | Second-pass traceability | Not started | `_extract/ui-controls.txt` and `event-handlers.txt` are not yet mapped ID by ID. |
 | Workflows | Cataloged | `WORKFLOW_CATALOG.md`, `WF-001` through `WF-013`. |
 | Discovery report and maintenance | Cataloged | Maintenance is `.cursor/commands/kb-update.md` in the website repo. A counts report was not given its own file. |

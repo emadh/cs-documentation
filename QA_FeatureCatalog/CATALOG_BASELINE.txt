@@ -1,9 +1,6 @@
 repo: cs-website
-commit: e8172b5c35b4e32a77ea28569ae82ad28ed83f8e
+commit: a4f1fc6b686294b7c00c692b744565efd5dc447d
 branch: mobile-responsive
-dirty: yes
-updated: 2026-11-06
-dirty paths:
-  M .vs/CS Website/v16/.suo
-  ?? .cursor/
-note: Those dirty paths are IDE state and the catalog slash command. They do not change user-facing product behavior. The catalog describes the committed application source at the SHA above. The next run should diff this commit and ignore those paths unless they start containing product code.
+dirty: no
+updated: 2026-11-07
+note: Product behavior matches e8172b5c35b4e32a77ea28569ae82ad28ed83f8e. The commit since that baseline updates the catalog command and an IDE user file only. KNOWLEDGE_BASE_SOURCE.md was created on this run from the reconciled catalog.
