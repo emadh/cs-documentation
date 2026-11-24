@@ -68,7 +68,7 @@ These match website commit `a4f1fc6b686294b7c00c692b744565efd5dc447d`. Product b
   2. To move a primary location, unlock the map, then drag the diamond header (MAP-008). Children move with it. Inventory stays on the same location ids. There is no resize handle (MAP-011).
   3. To put it under another parent, click the clasp, then click the new parent or empty canvas. Confirm **Move location?** Children stay with it. Empty canvas makes it primary (MAP-010).
   4. To delete, confirm **YES** on “Are your sure you want to DELETE this location?” Stock is checked out, then the location and its sub-locations are deleted (MAP-012). Closing the popup cancels. There is no No button.
-  5. To clone the structure, name the copy. **Auto-Rename Sub-Locations** is off unless you turn it on. Confirm. The page posts `api/LocationClone`. Whether quantities copy is Uncertain (MAP-013).
+  5. To clone the structure, name the copy. **Auto-Rename Sub-Locations** is off unless you turn it on. A code ends at a space, a hyphen, or a change between a letter and a number. Confirm. The page posts `api/LocationClone`. Whether quantities copy is Uncertain (MAP-013).
   6. To copy stock, hold Ctrl and drop a full location onto another. Confirm the message that existing items there are cleared first (MAP-014). This is blocked while several locations are selected (MAP-030).
   7. Rename, attachments, barcode, and kiosk links are in the location editor, not on the canvas (MAP-006, MAP-007, MAP-039, MAP-040, MAP-041).
 
@@ -76,18 +76,18 @@ These match website commit `a4f1fc6b686294b7c00c692b744565efd5dc447d`. Product b
 
 - **Who:** Signed in, not read-only.
 - **Steps:**
-  1. From Add Products, upload a CSV (PED-012). It must be under 250 KB, UTF-8, comma-separated, at most 100 columns. The first row is the header.
-  2. Drag columns from the left onto Product Number and any other fields (PED-013). You must map at least a product number. Sample headers are examples, not required names.
-  3. Unmapped quantity stays 1, prices stay 0, and the location stays All Locations. Duplicate numbers in the file are rejected. Existing products keep their description, price, and custom fields.
+  1. From Add Products, upload a CSV (PED-012). It must be under 250 KB, UTF-8, comma-separated, at most 100 columns. The first row is the header. **Sample CSV File** is built for this account. Drag a column onto a field, or click a column and then a field.
+  2. Match Product Number and any other fields (PED-013). You must map at least a product number. Saved header matches are applied when the headers match.
+  3. Unmapped quantity stays 1, prices stay 0, and the location stays All Locations. Duplicate numbers in the file are rejected. Existing products keep their description, price, and custom fields. The notice says how many will be created and how many already exist.
   4. Continue into the check-in page (WF-001, step 5).
 
 ## WF-008 — Import a list into a movement
 
 - **Who:** Signed in, not read-only. The import button is hidden once the destination selection is filled.
 - **Steps:**
-  1. From check-in, check-out, or transfer, click import before choosing the destination side (XFR-005, PED-014).
-  2. Match by product number, description, or a custom field. A value that matches more than one product is skipped.
-  3. Check-in keeps the quantity in the file. Check-out and transfer reduce it to what is on hand.
+  1. From check-in, check-out, or transfer, click import before choosing the destination side (XFR-005, PED-014). The title names the location, or says “(Multiple Locations)” when a location column is used.
+  2. Match by product number, description, or a custom field. A value that matches more than one product is skipped. **Use this location** keeps the location already chosen.
+  3. On a check-in back to Transfer, products that are not in the catalog can be created from the file, or skipped with **Continue with existing products**. Check-out and transfer do not offer create. Check-in keeps the quantity in the file. Check-out and transfer reduce it to what is on hand.
   4. Review the lines. The page stays locked until you save or cancel.
   5. Save uses the host mode (WF-002, WF-003, or WF-004). Cancel writes nothing.
 - **Start page:** The same file can fill the Start page cookies. Start then adds or subtracts. That is not the Transfer overwrite (XFR-006).

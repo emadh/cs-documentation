@@ -86,6 +86,7 @@ Feature ID, short name, and status for every entry in `ALL_FEATURES.md`. Descrip
 | DSP-006 | Quantity Threshold | Current |
 | DSP-007 | Max Highlight | Current |
 | DSP-008 | Kitting toggle | Current |
+| DSP-009 | Barcode label details | Current |
 
 ## ACCSET — Account settings
 
@@ -219,6 +220,7 @@ Feature ID, short name, and status for every entry in `ALL_FEATURES.md`. Descrip
 | ACT-005 | One activity | Current |
 | ACT-006 | Header activity popup | Current |
 | ACT-007 | What is stored | Current |
+| ACT-008 | Deleted product details | Current |
 
 ## EXP — Expirations
 
@@ -247,3 +249,9 @@ Feature ID, short name, and status for every entry in `ALL_FEATURES.md`. Descrip
 | --- | --- | --- |
 | RPT-001 | Download a product report | Current |
 | RPT-002 | AI insights report | Current |
+
+## HELP — In-app help
+
+| ID | Name | Status |
+| --- | --- | --- |
+| HELP-001 | Open help | Current |

@@ -602,6 +602,22 @@ These settings belong to the current user unless the entry says otherwise. Admin
 - **Related:** DSP-006, MAP-019
 - **Confidence:** Confirmed
 
+### DSP-009 — Barcode label details
+- **Availability:** Current
+- **Access:** Settings, **Display Settings**, **Barcode Label**. Admin, User, and Read-only can open Display Settings. The choice is saved for the signed-in person, not for the whole account.
+- **Purpose:** Choose which product details print above a barcode, and whether that line is capitalized.
+- **Open:** **Edit** next to **Barcode Label**. The helper is “Choose which product details print above the barcode.”
+- **Steps:**
+  1. Click **Edit**. The title is “Barcode label”. The hint is “Select which product details to print above the barcode. Values are joined with a hyphen.”
+  2. Turn **Capitalize** on or off. It is off until you save it on.
+  3. Turn on Product Name, any named custom field, and Expiration when expirations are on for you.
+  4. Each change saves on its own. Click **Done**, click the dimmed background, or press Escape to close.
+- **Options and limits:** Until you save a choice, labels print the product name and are not capitalized. After the first change, the saved list is what prints, including turning every detail off, which leaves the line above the barcode blank. The barcode and the number under it still print. Order is Product Name, then custom fields, then Expiration. Empty values are left out. A location barcode does not use this choice. Moving the map does not clear it. Syncing another person’s map layout replaces it (MAP-016).
+- **Result:** The next product barcode preview uses this choice (PED-015).
+- **Troubleshooting:** “Could not save. Try again.”
+- **Related:** PED-015, MAP-016, DSP-004
+- **Confidence:** Confirmed
+
 ## ACCSET — Account settings
 
 Admin only. Both values apply to the whole account. If the account row cannot be read, currency falls back to `$` and time zone falls back to GMT−5.
@@ -894,9 +910,9 @@ The live map is the inventory map, including on a phone. There is no right-click
 - **Steps:**
   1. Click Clone.
   2. The title is “Name the New Location”. The name box allows 255 characters. The suggested name is the source plus ` (Copy)`, then ` (Copy 2)`, and so on up to 999, shortened so the whole name is at most 255 characters.
-  3. **Auto-Rename Sub-Locations** is off by default. **Keyword** and **Replace with** start disabled. The tip is “Replaces a whole word or hyphen-separated part in sub-location names. For example, A32 to B45 renames A32-1 to B45-1. The new location itself keeps the name you entered.”
+  3. **Auto-Rename Sub-Locations** is off by default. **Keyword** and **Replace with** start disabled. The tip is “Replaces a whole code in sub-location names. A space, a hyphen, or a change between a letter and a number starts a new code. A to B renames A1 to B1, and A32 to B45 renames A32-1 to B45-1. A1 to B1 leaves A11 unchanged. The new location itself keeps the name you entered.”
   4. Click **Clone** or **Cancel**. Enter in the name or keyword fields confirms. Escape closes the window.
-- **Options and limits:** Keyword and replacement, each max 255, only when the switch is on. Keyword rename skips a blank result or a name that collides with a sibling.
+- **Options and limits:** Keyword and replacement, each max 255, only when the switch is on. A code ends at the start or end of the name, at a hyphen or a space, or where a letter meets a digit. Matching ignores case. Keyword rename skips a blank result or a name that collides with a sibling.
 - **Result:** The new root keeps the typed name. The map reloads and can highlight the new location. Whether quantities are copied is **Uncertain**. Do not say the clone copies stock, and do not say it leaves quantities at zero. Copying stock on the map is MAP-014.
 - **Troubleshooting:** “Please enter a name for the new location.” “A clone cannot use the same name as the original location.” “That name is already used by another location next to the original.” A service error leaves the user on the map. No fixed error sentence was found for that failure.
 - **Related:** MAP-014, MAP-037, WF-006
@@ -944,10 +960,10 @@ The live map is the inventory map, including on a phone. There is no right-click
   3. Choose a person. The dialog title is “Sync your Map Layout” and it shows that person’s name and email.
   4. The warning is “If you sync to this layout, you will lose your existing layout. Are you sure you want to continue?”
   5. Click **Keep my layout** or **Sync**. Escape or the backdrop cancels unless a sync is already running. While it runs the button says “Syncing…”.
-- **Options and limits:** The copy includes positions, both zoom levels, vertical stacks, and 3D stacks. Inventory, products, and locations are not copied.
-- **Result:** This user’s layout is replaced, then the map reloads.
+- **Options and limits:** The copy includes positions, both zoom levels, vertical stacks, and 3D stacks. Inventory, products, and locations are not copied. The barcode-label choice is part of the layout, so a sync replaces it (DSP-009).
+- **Result:** This user’s layout is replaced, then the map reloads. The barcode-label choice is replaced with the other person’s choice.
 - **Troubleshooting:** “Could not load shared maps.” “Sync is not available. Please refresh the page.” “Could not save the synced layout. Please try again.” “Could not sync this layout. Please try again.”
-- **Related:** DSP-001, MAP-009, MAP-015, MAP-017, MAP-028, MAP-029, WF-010
+- **Related:** DSP-001, DSP-009, MAP-009, MAP-015, MAP-017, MAP-028, MAP-029, WF-010
 - **Confidence:** Confirmed
 
 ### MAP-017 — Zoom
@@ -959,7 +975,7 @@ The live map is the inventory map, including on a phone. There is no right-click
   1. Click **+** or **−**, press those keys, or pinch.
   2. **+** multiplies the zoom by 1.1. **−** multiplies it by 0.9.
 - **Options and limits:** Desktop zoom stays between 0.1 and 1. Touch zoom stays between 0.15 and 2.2. The first zoom is 1 on desktop and 0.74 on a narrow layout (about 900px wide) unless this user has saved a zoom. Keys are ignored while typing, during the one-location coach, or while a window is open. Ctrl+wheel does not zoom the browser page.
-- **Result:** Zoom is saved for this user. Inventory is unchanged.
+- **Result:** Zoom is saved for this user. Inventory is unchanged. After a transfer window closes, the top-right zoom controls are shown again.
 - **Troubleshooting:** None.
 - **Related:** MAP-031, MAP-034, MAP-044
 - **Confidence:** Confirmed
@@ -1520,7 +1536,7 @@ The map’s one-unit move (MAP-023) sets that product’s source quantity to 0. 
   2. Set each quantity to a whole number, 0 or greater, and at least one line to 1 or more. The quantity title is “This quantity will be checked in to the selected location.”
   3. Click **Check in**. The comment box is “Any comments about this transaction?” **Cancel** closes it without saving. An empty box uses **Skip Comment**. Typed text switches the button to **Save**.
   4. **Skip check-in** closes the page and does not add stock. The products stay in the catalog.
-  5. When every imported line already has a real location, the map is hidden. Each line shows its location path, and the quantity title is “This quantity will be checked in to this location.” **Check in** saves each line to its own location.
+  5. When every imported line already has its own location, the map is hidden. A missing location, including a location that was not chosen, keeps the single-location map. Each line shows its location path, and the quantity title is “This quantity will be checked in to this location.” **Check in** saves each line to its own location.
   6. When this page was opened from an open transfer, there is no map. The title is “1 Product was created. Set the quantity, then continue.” or “{n} Products were created. Set quantities, then continue.” **Skip ››** drops the batch and returns to Transfer. **Continue** returns the quantities to Transfer and does not change stock on this page.
 - **Options and limits:** A generated product number shows “1 product number was generated.” or “{n} product numbers were generated.” Lines with quantity 0 are omitted from the save. **Continue** does not check the products in. **Skip check-in** does not delete the new catalog rows. All Locations is not a valid destination for the save.
 - **Result:** Standalone save adds the quantities at the one chosen location and writes one check-in activity. Imported-location save adds each line at its own location and writes one check-in activity. The done page reloads the parent window, or goes to the product list when there is no parent. Stock from **Continue** changes on the later Transfer save (XFR-001).
@@ -1780,7 +1796,7 @@ The list shows 50 products on a page request. All Locations is the whole catalog
   5. Export: tooltip “Download Product Report”. The product report opens for the current location (RPT-001). The current search is not included.
   6. Print barcodes: tooltip “Print barcodes for selected products”. If select-all is on, confirm “You are about to print barcodes for all {count} products. This may take a moment. Continue?”
   7. Printable: the image tooltip is the misspelled “pritnable version”. A new tab opens the product list in a printable view. The menu and the clickable controls are hidden. The browser print dialog is not opened.
-- **Options and limits:** Multi-edit fields: Product Name; Quantity only at a real location; Buy Price; Sell Price; each custom field. Quantity overwrites the quantity at the current location. A custom field that lists “Other (Specify)” accepts any typed text. A preset list without that choice accepts only a listed value. On a standard inventory account, multi-edit records an edit with quantity 1 in the activity, not the number typed, and the comment `Changed '{field}' to '{value}'`. Do not describe that write for a records account. The live delete removes the product. The dialog says the action cannot be undone. Removal of images, attachments, and quantities inside the delete service is **Uncertain**. Do not describe an older quantity-only delete dialog as the live path. A Read-only user who opens the printable address is sent to the read-only list and the printable view is not kept.
+- **Options and limits:** Multi-edit fields: Product Name; Quantity only at a real location; Buy Price; Sell Price; each custom field. Quantity overwrites the quantity at the current location. A custom field that lists “Other (Specify)” accepts any typed text. A preset list without that choice accepts only a listed value. On a standard inventory account, only products whose value changes are written. A name, price, or custom-field change records an edit whose comment is `{field} for '{product number}' was changed from '{old}' to '{new}'`. Prices in that comment use two decimals. A quantity change whose old and new values are both whole numbers records an adjust, with the comment `Quantity for '{product number}' was adjusted from {old} to {new}`. An unchanged value is skipped. Do not describe that write for a records account. The live delete removes the product. The dialog says the action cannot be undone. Removal of images, attachments, and quantities inside the delete service is **Uncertain**. Do not describe an older quantity-only delete dialog as the live path. A Read-only user who opens the printable address is sent to the read-only list and the printable view is not kept.
 - **Result:** Add opens create. Delete records a product-deleted activity and returns to the list. Recent rows are creates, newest first, up to 50. Export opens RPT-001. Barcodes open PED-015.
 - **Troubleshooting:** Delete cancel leaves the list unchanged. Multi-edit: “Please enter a value”; “Value must be numeric!”; “Value is not allowed for this field.”; “Invalid field selected.” Recent, when there are no creates: “No recent new products...”. Print-barcode cancel on select-all stays on the list.
 - **Related:** PED-008, PED-010, PED-015, RPT-001, PRD-005, WF-001, WF-013
@@ -1800,7 +1816,7 @@ The list shows 50 products on a page request. All Locations is the whole catalog
   4. “Other (Specify)” opens a box titled “Other (Specify):”. Type a value and click Save, or Cancel to keep the previous value.
   5. An Admin can click “Edit your fields”.
 - **Options and limits:** Buy Price and Sell Price appear only on a standard inventory account and only when CFL-002 says to show them. Their labels include the account currency. “(none)” stores an empty value. Currency fields reject a non-numeric value and a negative value. Do not tell users they will see “The Product Name is not valid!” for a normal name edit. That sentence is not shown for a normal name.
-- **Result:** The field is saved and an edit activity is recorded with `Changed '{label}' to '{value}'`. The editor reloads. The product list is marked to reload when the user returns to it.
+- **Result:** The field is saved. When the stored value actually changes, an edit activity is recorded with `{field} for '{product number}' was changed from '{old}' to '{new}'`. Prices in that comment use two decimals. An unchanged value does not write an activity. The editor reloads. The product list is marked to reload when the user returns to it.
 - **Troubleshooting:** “The Buy Price is not valid!” or “The Sell Price is not valid!” when the value is not numeric or is negative. A custom-field text error uses “The field {name} is not valid!” only when a numeric check on that field fails.
 - **Related:** PRD-007, PED-009, CFL-002, WF-013
 - **Confidence:** Confirmed
@@ -1887,10 +1903,10 @@ The list shows 50 products on a page request. All Locations is the whole catalog
 - **Steps:**
   1. Click the clone image. The dialog title is “Clone Product”.
   2. Leave Auto checked to accept the next number. The number box shows “[Automatic Product Number]” and stays disabled.
-  3. Or uncheck Auto and type a product number.
+  3. Or uncheck Auto. The number box is filled with a suggestion and selected. An automatic number that is `CSN-` plus digits keeps that number and adds `-1`. It does not take the next automatic number. A number that already ends in `-` plus digits increases that ending. Any other number adds `-1`. If that number already exists, the ending increases. You can still type a different number.
   4. Adjust the copied fields. When expirations are on, an Expiration date is included.
   5. Click Clone. Cancel closes the dialog.
-- **Options and limits:** Auto is checked by default and assigns `CSN-` plus nine digits. Empty name is saved as the new product number. A price that does not parse is saved as 0. The date is copied only when expirations are on and a date was entered. Quantities, locations, and attachments are not copied. The image is copied when that copy succeeds.
+- **Options and limits:** Auto is checked by default and assigns `CSN-` plus nine digits. Unchecking Auto fills the suggestion in the steps and still requires a product number. Empty name is saved as the new product number. A price that does not parse is saved as 0. The date is copied only when expirations are on and a date was entered. Quantities, locations, and attachments are not copied. The image is copied when that copy succeeds.
 - **Result:** The new product is created. A create activity is recorded. The new editor opens with a “new” badge once.
 - **Troubleshooting:** “You must enter a product number.” “That product number already exists!”
 - **Related:** PED-001, PED-005, PED-006, WF-013
@@ -1905,7 +1921,7 @@ The list shows 50 products on a page request. All Locations is the whole catalog
   1. Click the trash button.
   2. Read “Delete this product?” and “Deleting this product will also check it out of all locations on the map.”
   3. Click Delete, or Cancel.
-- **Options and limits:** The dialog states that the product is checked out of all locations. Whether images, attachments, and every quantity row are removed is **Uncertain**. Do not promise a result the delete service was not verified to complete. Cancel leaves the product. A missing product goes to a product error page.
+- **Options and limits:** The dialog states that the product is checked out of all locations. Whether images, attachments, and every quantity row are removed is **Uncertain**. Do not promise a result the delete service was not verified to complete. Cancel leaves the product. A missing product opened without an activity goes to a product error page. A missing product opened from an activity opens the deleted-product page (ACT-008).
 - **Result:** The product delete runs and a product-deleted activity is recorded. The editor then asks for that same product number, which is no longer there.
 - **Troubleshooting:** Cancel closes the dialog.
 - **Related:** PRD-011, WF-013
@@ -1921,7 +1937,7 @@ The list shows 50 products on a page request. All Locations is the whole catalog
   2. Read the fields. They are disabled.
   3. Use Print Barcodes, an attachment chip, the Lansweeper image when it is present, and the map.
 - **Options and limits:** Clone, delete, photo upload, and attachment upload are not on this page. The expiration date is visible and disabled.
-- **Result:** No catalog field is saved from this page.
+- **Result:** No catalog field is saved from this page. A missing product opened from an activity opens the deleted-product page (ACT-008). Otherwise a missing product goes to a product error page.
 - **Troubleshooting:** A missing product number goes to a product error page.
 - **Related:** PRD-007, PED-001, PED-002, PED-003, PED-004, PED-006
 - **Confidence:** Confirmed
@@ -1965,44 +1981,47 @@ The list shows 50 products on a page request. All Locations is the whole catalog
 - **Open:** Import from file.
 - **Steps:**
   1. Choose a CSV and upload it.
-  2. When the file is accepted, the instruction changes to “Drag from left to right to Match the fields.”
-  3. Drag each file column onto a field on the right. Click a field to clear that match.
-  4. Continue with PED-013 or PED-014.
-- **Options and limits:** The file must be under 250 KB, UTF-8, comma-separated, with at most 100 columns. The first non-blank row is the header and is never a product. Quoted commas are supported. At least a Product Number must be matched before a create upload can continue. The sample link on a create import is a products sample file. A semicolon file is rejected.
+  2. **Sample CSV File** downloads a sample for this import. It follows the current mode, the visible prices and custom fields, expirations when they are on, and whether locations are matched by number or by name. Optional headers are wrapped in parentheses. Two example rows are included.
+  3. When the file is accepted, the instruction changes to “Drag a column onto a field, or click a column and then a field.”
+  4. Drag a column onto a field, or click a column and then the field. Click a matched field to clear that match.
+  5. Continue with PED-013 or PED-014.
+- **Options and limits:** The file must be under 250 KB, UTF-8, comma-separated, with at most 100 columns. The first non-blank row is the header and is never a product. Quoted commas are supported. At least a Product Number must be matched before a create upload can continue. A semicolon file is rejected. A create import drops trailing columns that are completely blank, remembers which header names were matched, and applies those matches on the next create file with the same headers. A movement import that returns to Transfer remembers its own matches. After a file error, if matching was already showing, the instruction becomes “Upload another file.”
 - **Result:** A valid file is held for column matching. Nothing is written to the catalog until the matching step is confirmed.
-- **Troubleshooting:** “This file is empty.” “This file is too large. Use a CSV smaller than 250 KB.” “This file is not a CSV. Save it as a comma-separated CSV and try again.” “This file is not valid UTF-8. Save it as CSV UTF-8 and try again.” “This file uses semicolons between columns. Save it as a comma-separated CSV and try again.” “This file has more than 100 columns. Remove the extra columns and try again.” “Row {n} could not be read. Check the quotes and try again.” “This file has no products.” “You must select at least a Product Number to upload.” “This file could not be read. Save it as CSV UTF-8 and try again.” “The column matching could not be read. Match the fields again.”
+- **Troubleshooting:** “This file is empty.” “This file is too large. Use a CSV smaller than 250 KB.” “This file is not a CSV. Save it as a comma-separated CSV and try again.” “This file is not valid UTF-8. Save it as CSV UTF-8 and try again.” “This file uses semicolons between columns. Save it as a comma-separated CSV and try again.” “This file has more than 100 columns. Remove the extra columns and try again.” “Spreadsheet row {n} could not be read. Check the quotes and try again.” “This file has no products.” “You must select at least a Product Number to upload.” “This file could not be read. Save it as CSV UTF-8 and try again.” “The column matching could not be read. Match the fields again.” On a create import: “Spreadsheet row {n} has {found} columns and the header has {expected}.” “Some columns have no header, and some rows have values in those columns. Add a header for every column, or remove the extra cells so each row lines up with the headers.”
 - **Related:** PED-013, PED-014, WF-007, WF-008
 - **Confidence:** Confirmed
 
 ### PED-013 — Import to create products
 - **Availability:** Current
-- **Access:** Import from file in create mode, from Add Products. Sample header names are examples: Product Number, Product Name, Buy Price, Sell Price, Manufacturer, Supplier. The importer uses the columns you drop, not those header names.
+- **Access:** Import from file in create mode, from Add Products. The page title is “Create Products”. The sample is built for this account. The importer uses the columns you match, not the sample header names.
 - **Purpose:** Create new products from a CSV and stage quantities for check-in. Existing products are not updated.
 - **Open:** Import from Add Products.
 - **Steps:**
   1. Upload a CSV that passes PED-012.
-  2. Drag columns onto Product Number, Description, Buy Price and Sell Price when those are shown, each custom field, Quantity, Expiration when expirations are on, and Location number or Location name unless you are returning to a transfer.
+  2. Match columns onto Product Number, Description, Buy Price and Sell Price when those are shown, each custom field, Quantity, Expiration when expirations are on, and Location number or Location name unless you are returning to a transfer. Drag a column onto a field, or click a column and then a field. Saved header matches are applied when the headers match.
   3. Quantity’s tip is “You can include a quantity column to use during Check In”. Location’s tip is “You can include a location column to check these products into those locations.” Expiration’s tip is “A date like 2026-12-31 (year-month-day).”
   4. Click Next. If some numbers already exist, review the notice and click Continue.
-  5. Check-in opens (WF-001), or the open transfer when you came from one.
-- **Options and limits:** Unmapped product number becomes `CSN-` plus nine digits. Unmapped description becomes the product number. Unmapped prices stay 0. Unmapped quantity stays 1. Unmapped location stays All Locations. Length limit is 255 for product number, description, and each custom field. Manufacturer and Supplier import only when those file columns are dropped onto custom fields. Presets are not enforced. Buy and sell slots appear on a standard inventory account when prices are shown. Existing products keep their description, price, and custom fields. Their quantity is staged for check-in. Expirations are saved only for new numbers.
-- **Result:** New product numbers are created. The notice says “Existing products keep their description, price, and custom fields. Their quantity is staged for check-in. New products are created from this file.” The summary line is “1 product already exists” or “{count} products already exist”.
-- **Troubleshooting:** “Row {n}: Buy Price must be a number such as 12.50.” The sell-price sentence uses the same pattern. “Row {n}: Quantity must be a whole number such as 1 or 1.00.” “Row {n}: Expiration must be a date such as 2026-12-31.” “Product number "{n}" is used on {count} rows.” “Row {n}: Product number is longer than 255 characters.” The description and custom-field length sentences use the same 255-character pattern. “Row {n} has {found} columns and the header has {expected}.” “The file or column matching changed. Review the import and try again.”
+  5. Check-in opens (WF-001), or the open transfer when you came from one. Returning to a transfer does not offer a location column. A note says “New products are checked in to {name} for this transfer.”
+- **Options and limits:** Unmapped product number becomes `CSN-` plus nine digits. Unmapped description becomes the product number. Unmapped prices stay 0. Unmapped quantity stays 1. Unmapped location stays All Locations. Length limit is 255 for product number, description, and each custom field. Presets are not enforced. Buy and sell slots appear on a standard inventory account when prices are shown. Existing products keep their description, price, and custom fields. Their quantity is staged for check-in. Expirations are saved only for new numbers. The location column can be Location # or Location Name.
+- **Result:** New product numbers are created. The summary is “No products will be created”, “Only 1 product will be created”, or “Only {count} products will be created”, then how many already exist. The explanation is “Existing products keep their description, price, and custom fields. Their quantity is staged for check-in. The existing products are:” and each line is “Spreadsheet row {n}: {product number}”.
+- **Troubleshooting:** “Spreadsheet row {n}: Buy Price must be a number such as 12.50.” The sell-price sentence uses the same pattern. “Spreadsheet row {n}: Quantity must be a whole number such as 1 or 1.00.” “Spreadsheet row {n}: Expiration must be a date such as 2026-12-31.” “Product number "{n}" is used on {count} spreadsheet rows.” Then “Remove the duplicate and try again.” “Spreadsheet row {n}: Product number is longer than 255 characters.” The description and custom-field length sentences use the same 255-character pattern. “Spreadsheet row {n} has {found} columns and the header has {expected}.” “The file or column matching changed. Review the import and try again.”
 - **Related:** PED-012, PED-005, PED-010, WF-001, WF-007
 - **Confidence:** Confirmed
 
 ### PED-014 — Import a list into check-in, check-out, or transfer
 - **Availability:** Current
 - **Access:** Import from file with create turned off, from “Import From File” or “OR Import from File with Locations”, before the movement’s destination selection is finished. This mode does not insert products.
-- **Purpose:** Stage rows for a movement. Stock changes later, on the host page.
+- **Purpose:** Stage rows for a movement. A check-in back to Transfer can also create products that are not in the catalog. Stock changes later, on the host page.
 - **Open:** Import from check-in, check-out, or transfer.
 - **Steps:**
-  1. Upload a CSV that passes PED-012. Sample shapes are product number and quantity; product number, quantity, and location when a location column is required; and product number, quantity, FROM, and TO for a transfer.
-  2. Match the identifier. On a transfer, open “Choose the field that identifies each product” and pick Product Number, Description, or a custom field. Match Quantity. Match Location number, or FROM and TO, when those slots are showing. Location name can be chosen with “Choose how locations are identified”.
-  3. Click Next.
-- **Options and limits:** Quantity is required. A non-transfer row whose column count does not match the header fails the file. A transfer row with a different column count is skipped. A repeated identifier on a transfer keeps the later quantity. No product rows are inserted. Stock is changed later by the host page, and those paths are not the same (WF-008).
-- **Result:** The movement receives the imported lines. A transfer returns to Transfer, or to the mobile transfer page on a phone.
-- **Troubleshooting:** “The selected field must be numeric!” when a non-transfer quantity column is not numeric. Transfer skips: “Row {n}: {field} is blank.” “Row {n}: Quantity must be a whole number such as 1 or 1.00.” “Row {n}: Quantity must be a whole number greater than 0.” “Row {n}: this row has {found} columns and the header has {expected}, so it was skipped.” “Row {n}: {field} "{value}" was already on {earlier}. The quantity from row {n} was used.” Location names that do not match show the location error from the lookup.
+  1. Upload a CSV that passes PED-012. **Sample CSV File** is built for this import.
+  2. The title is “Check In”, “Check In to {location}”, “Check Out”, “Check Out from {location}”, “Transfer”, or “Transfer from {source} to {destination}”. Matching a location column changes it to “Check In (Multiple Locations)”, “Check Out (Multiple Locations)”, or “Transfer (Multiple Locations)”.
+  3. Match the identifier. On a transfer, open “Choose the field that identifies each product” and pick Product Number, Description, or a custom field. Match Quantity. The location menu offers Location # and Location Name. When a location was already chosen, **Use this location** clears a mapped location column and uses that location. The location tip is “A location column gives each row its own location.”
+  4. Click Next. On a check-in back to Transfer, missing products show “1 product doesn't exist.” or “{n} products don't exist.” **Create** opens “Match any other columns for the new products.” The identifier and quantity stay matched. Next creates only those products, then the check-in continues. **Continue with {n} existing products** skips them. Cancel on that step creates nothing. Check-out and transfer do not offer **Create**.
+  5. A check-out or transfer that is not returning to Transfer reviews stock first. It can say how many products don't exist, how many are not at the source, how many quantities will be reduced, and how many rows will be skipped. **Continue with {n} products** keeps the rows that can move. If none can move, that button is hidden.
+- **Options and limits:** Quantity is required. A row whose column count does not match the header fails a non-transfer file and is skipped on a transfer return, with “Spreadsheet row” in the sentence. A repeated identifier on a transfer return keeps the later quantity. Stock is changed later by the host page, and those paths are not the same (WF-008). Only the check-in **Create** step inserts products.
+- **Result:** The movement receives the imported lines. Created products, when that step is used, are in the catalog before the check-in continues. A transfer returns to Transfer, or to the mobile transfer page on a phone.
+- **Troubleshooting:** “The selected field must be numeric!” when a non-transfer quantity column is not numeric. “Match a product column and a quantity column first.” “Choose a source location before importing.” “The products could not be checked. Try again.” Transfer skips use “Spreadsheet row {n}:”. Location names that do not match say the place “could not be found.” On the create step, a problem ends with “Nothing was created.” including “The check-in product and quantity columns have to stay matched. Nothing was created.”
 - **Related:** PED-012, PED-016, XFR-005, WF-008
 - **Confidence:** Confirmed
 
@@ -2016,10 +2035,10 @@ The list shows 50 products on a page request. All Locations is the whole catalog
   2. Choose a label stock. The first choice is already selected: `30252 (1-1/8" × 3-1/2")`.
   3. Click **PREVIEW & PRINT**. The page builds a Code 128 barcode for each product.
   4. Use the browser print dialog on the preview. The page recommends a DYMO LabelWriter 450.
-- **Options and limits:** Stocks: `30252 (1-1/8" × 3-1/2")`, `30336 (1" × 2-1/8")`, `30334 (2-1/4" × 1-1/4")`, `30330 (3/4" × 2")`. An unknown stock falls back to 30252. There is no custom layout. A missing name is printed as “UNTITLED”. A comma in a product number clears the shared name, and each name is then looked up.
-- **Result:** One label per product number, with a Code 128 symbol and the product name or “UNTITLED”.
+- **Options and limits:** Stocks: `30252 (1-1/8" × 3-1/2")`, `30336 (1" × 2-1/8")`, `30334 (2-1/4" × 1-1/4")`, `30330 (3/4" × 2")`. An unknown stock falls back to 30252. There is no custom layout. Until a barcode-label choice is saved (DSP-009), the line above the barcode is the product name, or “UNTITLED” when the product cannot be found and no name was passed. After a choice is saved, that line is the selected details joined with a hyphen: Product Name, then custom fields, then Expiration when expirations are on. Empty values are left out. **Capitalize** prints that line in uppercase. Turning every detail off leaves the line blank. The barcode and the number under it still print. A location barcode uses the location name and does not use the product-field choice. A comma in a product number clears the shared name, and each name is then looked up.
+- **Result:** One label per code, with a Code 128 symbol, the number under it, and the line described above.
 - **Troubleshooting:** An empty product list returns without drawing labels. There is no extra alert.
-- **Related:** PRD-011, PED-001, PED-009
+- **Related:** PRD-011, PED-001, PED-009, DSP-009
 - **Confidence:** Confirmed
 
 ### PED-016 — Product selector
@@ -2112,12 +2131,12 @@ Records phrases: created new records, deleted records, edited records, assigned 
 - **Open:** Hover the count, or click the download image.
 - **Steps:**
   1. Hover the product count. The panel lists product name, number, and quantity.
-  2. Click a product name in the hover to open Product Editor. Click a location in the hover to open Location Editor. Those clicks do not open Activity Details.
+  2. Click a product name in the hover to open Product Editor. If that product is gone, the deleted-product page opens (ACT-008). Click a location in the hover to open Location Editor. Those clicks do not open Activity Details.
   3. Leave **Readable Format** checked, or clear it. Click the download image. The file uses the current filters and ignores the 15-row cap.
 - **Options and limits:** Count text is `{n} Product` or `{n} Products`. When the row has quantities, it adds `({qty} Item)` or `({qty} Items)`. Create and edit omit the quantity. Check-in can say “to {location}”. Check-out can say “from {location}”. Transfer says “from {a} to {b}”. Adjust says “at {location}”. The hover lists at most 11 product lines. Further products are still counted. **Readable Format** is checked by default. Tooltip: “If you need to manipulate your data more easily you can uncheck this box for a more uniform file.” Checked writes one summary line per activity, then product lines whose first columns are blank. Unchecked repeats date, user, activity, source, destination, and comment on every product line. Columns, exactly: Date, User, Activity, Source, Destination, Comments, Product Number, Description, Quantity, FROM, TO, Buy Price, Sell Price, Old Quantity, New Quantity, Qty. Diff., Cost Diff. The last four headers are present and are not filled. Commas in user, description, comment, product number, and product name become underscores. Location paths in FROM and TO are not changed that way. The filename is `CyberStockroom - {category label} Report`, plus ` at {location name}` when a location is selected and the name is not `[DELETED]`, cut at 200 characters, then `.csv`.
 - **Result:** A CSV of the filtered activities, including rows past the 15 on screen. If product details cannot be read, the chip reads `{n} Product(s) [DELETED]` and the hover lists the product numbers. An empty product name in the CSV is `[DELETED]`.
 - **Troubleshooting:** None is shown for a download error. The file is still offered when the page can build it.
-- **Related:** ACT-001, ACT-002, ACT-003, ACT-005
+- **Related:** ACT-001, ACT-002, ACT-003, ACT-005, ACT-008
 - **Confidence:** Confirmed
 
 ### ACT-005 — One activity
@@ -2128,12 +2147,12 @@ Records phrases: created new records, deleted records, edited records, assigned 
 - **Steps:**
   1. Click the row.
   2. Read the user (**You** when the stored first name matches), the description, the time, the comment, the locations, and the product table.
-  3. Click a product name to open Product Editor in the parent window. Click a location row to open Location Editor the same way.
+  3. Click a product name to open Product Editor in the parent window. If that product is gone, the deleted-product page opens (ACT-008). Click a location row to open Location Editor the same way.
   4. Click the download image to download this activity.
 - **Options and limits:** Product table columns are Product, Number, and Qty, except create and edit, which omit Qty. Qty is the larger of quantity in and quantity out. Extra columns appear only when both header locations are All Locations: check-in **To**, check-out **From**, adjust **Location**, transfer **From** and **To**. The details file always uses grouped rows and All Activity. There is no comment edit and no undo. The check-in and check-out badges from the list are not added here. The filename is `CyberStockroom - {description} - {MMM d yyyy}`, cut at 200 characters, plus `.csv`.
 - **Result:** The full product list, with no 11-line cap.
 - **Troubleshooting:** Missing or unknown id shows **Activity not found** and **This activity may have been removed or is not available on this account.** A download of a missing id does not return a file. A blank product name displays `[DELETED]`.
-- **Related:** ACT-001, ACT-004, ACT-007
+- **Related:** ACT-001, ACT-004, ACT-007, ACT-008
 - **Confidence:** Confirmed
 
 ### ACT-006 — Header activity popup
@@ -2158,11 +2177,26 @@ Records phrases: created new records, deleted records, edited records, assigned 
 - **Steps:**
   1. Finish the action on its own page.
   2. Open Activity History. The new row uses the phrase for the account kind listed at the top of this section.
-- **Options and limits:** A content line is stored only when the product number is not empty and the quantity is greater than 0. Zero-quantity lines are dropped. There is no undo and no way to delete an activity from this screen. An unrecognized account can show a short activity label that includes a number, or the text `[ERROR-ACC1 - unkown account type]`. Do not describe administration events as rows in this list.
+- **Options and limits:** A product-field edit comment is `{field} for '{product number}' was changed from '{old}' to '{new}'`. A quantity adjust comment is `Quantity for '{product number}' was adjusted from {old} to {new}`. A content line is stored only when the product number is not empty and the quantity is greater than 0. Zero-quantity lines are dropped. There is no undo and no way to delete an activity from this screen. An unrecognized account can show a short activity label that includes a number, or the text `[ERROR-ACC1 - unkown account type]`. Do not describe administration events as rows in this list.
 - **Result:** A new activity the history page can show when the type is one of the product, inventory, location, or adjust types and the row has the content lines that type uses.
 - **Troubleshooting:** A line that fails while the activity is recorded is skipped. There is no sentence.
 - **Related:** ACT-001, ACT-002, ACT-005, WF-011
 - **Confidence:** Confirmed for the phrases and the content-line rule. Uncertain for rows written by expiration replacement.
+
+### ACT-008 — Deleted product details
+- **Availability:** Current
+- **Access:** A product name on an activity row or on one activity, when that product is no longer in the catalog. It is not in the main menu. Header search does not open it. A missing product opened without an activity still goes to a product error page.
+- **Purpose:** Read the product number, and any details that were stored when the activity was recorded.
+- **Open:** Click the product name on the activity.
+- **Steps:**
+  1. Click the product name.
+  2. Read “This Product has been deleted...” and the product number.
+  3. When details were stored, a heading reads “Details at the time of this activity”. The rows can include the name, sell price, buy price, and custom fields that had a value. Prices use the account currency and two decimals when the stored value is a number.
+- **Options and limits:** Empty stored values are omitted. Nothing on this page restores the product.
+- **Result:** A read-only page. Nothing is written.
+- **Troubleshooting:** If no details were stored, the page still shows the deleted sentence and the product number.
+- **Related:** ACT-004, ACT-005, PED-008, PED-009
+- **Confidence:** Confirmed
 
 ## EXP — Expirations
 
@@ -2285,6 +2319,22 @@ Kitting appears in the Products menu only when it is already enabled for this us
 - **Related:** PRD-006, WF-013, ACT-003
 - **Confidence:** Confirmed
 
+## HELP — In-app help
+
+### HELP-001 — Open help
+- **Availability:** Current
+- **Access:** Signed-in pages. The account menu **Help**, and the help menu **Search Topics** and **Email Support**. On a phone, **Help** in the menu.
+- **Purpose:** Open the in-app help window.
+- **Open:** **Help**, **Search Topics**, or **Email Support**.
+- **Steps:**
+  1. Click **Help**, **Search Topics**, or **Email Support**.
+  2. The help window opens.
+- **Options and limits:** On the phone map, the floating help button is hidden so it does not cover the add button. **Help** in the menu still opens the window. The topics and the email form are the help window itself.
+- **Result:** The help window opens.
+- **Troubleshooting:** If the help window has not loaded, the click does nothing. There is no sentence on the page.
+- **Related:** MAP-044
+- **Confidence:** Confirmed
+
 ## Workflows
 
 These are the cross-page sequences. Use the feature entries for the exact labels, limits, and errors. Where a service outside the website finishes the stock change, the outcome stays **Uncertain**.
@@ -2382,7 +2432,7 @@ These are the cross-page sequences. Use the feature entries for the exact labels
   2. To move a primary location, unlock the map, then drag the diamond header (MAP-008). Children move with it. Inventory stays on the same locations. There is no resize handle (MAP-011).
   3. To put it under another parent, click the clasp, then click the new parent or empty canvas. Confirm **Move location?** Children stay with it. Empty canvas makes it primary (MAP-010).
   4. To delete, confirm **YES** on “Are your sure you want to DELETE this location?” Stock is checked out, then the location and its sub-locations are deleted (MAP-012). Closing the popup cancels. There is no No button.
-  5. To clone the structure, name the copy. **Auto-Rename Sub-Locations** is off unless you turn it on. Confirm. Whether quantities copy is **Uncertain** (MAP-013).
+  5. To clone the structure, name the copy. **Auto-Rename Sub-Locations** is off unless you turn it on. A code ends at a space, a hyphen, or a change between a letter and a number. Confirm. Whether quantities copy is **Uncertain** (MAP-013).
   6. To copy stock, hold Ctrl and drop a full location onto another. Confirm the message that existing items there are cleared first (MAP-014). This is blocked while several locations are selected (MAP-030). What each quantity becomes is **Uncertain**.
   7. Rename, attachments, barcode, and kiosk links are in the location editor (MAP-006, MAP-007, MAP-039, MAP-040, MAP-041).
 - **Options and limits:** See those feature entries.
@@ -2397,9 +2447,9 @@ These are the cross-page sequences. Use the feature entries for the exact labels
 - **Purpose:** Create products from a CSV and continue to check-in.
 - **Open:** Add Products, import file.
 - **Steps:**
-  1. Upload a CSV under 250 KB, UTF-8, comma-separated, at most 100 columns. The first row is the header (PED-012).
-  2. Drag columns onto Product Number and any other fields (PED-013). You must map at least a product number. Sample headers are examples, not required names.
-  3. Unmapped quantity stays 1, prices stay 0, and the location stays All Locations. Duplicate numbers in the file are rejected. Existing products keep their description, price, and custom fields.
+  1. Upload a CSV under 250 KB, UTF-8, comma-separated, at most 100 columns. The first row is the header (PED-012). **Sample CSV File** is built for this account. Drag a column onto a field, or click a column and then a field.
+  2. Match Product Number and any other fields (PED-013). You must map at least a product number. Saved header matches are applied when the headers match.
+  3. Unmapped quantity stays 1, prices stay 0, and the location stays All Locations. Duplicate numbers in the file are rejected. Existing products keep their description, price, and custom fields. The notice says how many will be created and how many already exist.
   4. Continue into check-in (WF-001).
 - **Options and limits:** PED-012 and PED-013.
 - **Result:** New products, plus staged quantities for check-in.
@@ -2410,11 +2460,11 @@ These are the cross-page sequences. Use the feature entries for the exact labels
 ### WF-008 — Import a list into a movement
 - **Availability:** Current
 - **Access:** Signed in, not Read-only. The import button is hidden once the destination selection is filled.
-- **Purpose:** Fill check-in, check-out, or transfer from a file without creating products.
+- **Purpose:** Fill check-in, check-out, or transfer from a file. Check-out and transfer do not create products. A check-in back to Transfer can create products that are not in the catalog.
 - **Open:** **import file** before choosing the destination side (XFR-005, PED-014).
 - **Steps:**
-  1. Match by product number, description, or a custom field. A value that matches more than one product is skipped.
-  2. Check-in keeps the quantity in the file. Check-out and transfer reduce it to what is on hand.
+  1. Match by product number, description, or a custom field. A value that matches more than one product is skipped. **Use this location** keeps the location already chosen. A mapped location column changes the title to “(Multiple Locations)”.
+  2. On a check-in back to Transfer, **Create** makes the missing products, or **Continue with existing products** skips them. Check-in keeps the quantity in the file. Check-out and transfer reduce it to what is on hand.
   3. Review the lines. The page stays locked until you save or cancel.
   4. Save uses the host mode (WF-002, WF-003, or WF-004). Cancel writes nothing.
 - **Options and limits:** The same file can fill Start. Start then adds or subtracts. That is not the Transfer overwrite (XFR-006).

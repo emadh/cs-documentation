@@ -99,6 +99,7 @@ These use `UserPageNoMenu.master` unless noted. Most open in a Fancybox iframe f
 | PG-PRINT | Print barcodes | `/PrintBarcode.aspx` | Barcode label preview | Products "Print barcodes" |
 | PG-EXPORT | Export report | `/ExportReport.aspx` | Build and download a product/quantity report. Location selector included. | Products download; map "Download Quantity Report" opens a related modal on the map itself |
 | PG-ACTIVITY-DETAIL | Activity details | `/ActivityDetails.aspx` | One activity record | Activity history row |
+| PG-DELETED | Deleted product | `/ProductDeleted.aspx` | “This Product has been deleted...” plus any snapshot stored on the activity. Not a restore screen. | Product name on an activity when the product is gone |
 | PG-DOC | Document editor | `/DocumentEditor.aspx` | Not a working document screen. Direct address only. The heading and placeholder labels do not print, save, or continue. Product attachments are PED-003. | Direct URL only |
 | PG-PROFILE | Required profile | `/ProfileRequired.aspx` | Force a display name (and related profile fields) | Auto-opened when the name is blank |
 | PG-WELCOME | Welcome | `/Welcome.aspx` | Immediately redirects to `/Map`. The profile and demo-data code below that redirect does not run. | Any request to the page | Not a setup wizard |
@@ -236,19 +237,20 @@ The same feature can appear on more than one page. Removed or unwired screens ar
 
 | Page | Feature IDs |
 | --- | --- |
-| PG-SHELL-DESKTOP, PG-SHELL-MOBILE-NAV | SRCH-001, ACT-006, SET-001. Menu links open MAP-001, PRD-001, XFR-006, XFR-011, ACT-001, EXP-001, KIT-001. |
+| PG-SHELL-DESKTOP, PG-SHELL-MOBILE-NAV, PG-SHELL-MOBILE | SRCH-001, ACT-006, SET-001, HELP-001. Menu links open MAP-001, PRD-001, XFR-006, XFR-011, ACT-001, EXP-001, KIT-001. |
 | PG-LOGIN | ACC-001, ACC-002, ACC-003, ACC-004 |
-| PG-MAP, PG-C-MAP | MAP-001, MAP-003, MAP-004, MAP-005, MAP-008, MAP-009, MAP-010, MAP-011, MAP-012, MAP-013, MAP-014, MAP-015, MAP-016, MAP-017, MAP-018, MAP-019, MAP-020, MAP-021, MAP-022, MAP-023, MAP-024, MAP-025, MAP-027, MAP-028, MAP-029, MAP-030, MAP-031, MAP-032, MAP-033, MAP-034, MAP-035, MAP-036, MAP-037, MAP-042, MAP-044 |
+| PG-MAP, PG-C-MAP | MAP-001, MAP-003, MAP-004, MAP-005, MAP-008, MAP-009, MAP-010, MAP-011, MAP-012, MAP-013, MAP-014, MAP-015, MAP-016, MAP-017, MAP-018, MAP-019, MAP-020, MAP-021, MAP-022, MAP-023, MAP-024, MAP-025, MAP-027, MAP-028, MAP-029, MAP-030, MAP-031, MAP-032, MAP-033, MAP-034, MAP-035, MAP-036, MAP-037, MAP-042, MAP-044, HELP-001 |
 | PG-MAP-RO | MAP-002, MAP-004, MAP-017, MAP-018, MAP-024, MAP-027, MAP-029, MAP-031, MAP-032, MAP-035, MAP-038, MAP-044 |
 | PG-PRODUCTS | PRD-001, PRD-002, PRD-003, PRD-004, PRD-005, PRD-006, PRD-007, PRD-008, PRD-009, PRD-010, PRD-011 |
 | PG-PRODUCTS-RO | PRD-001, PRD-002, PRD-003, PRD-004, PRD-006, PRD-007, PRD-008, PRD-009, PRD-011. No delete, multi-edit, or quantity editor. |
 | PG-START, PG-SELECTOR | XFR-006, PED-016, DEF-001, DEF-002 |
-| PG-ACTIVITY | ACT-001, ACT-002, ACT-003, ACT-004, ACT-007 |
-| PG-ACTIVITY-DETAIL | ACT-005 |
+| PG-ACTIVITY | ACT-001, ACT-002, ACT-003, ACT-004, ACT-007, ACT-008 |
+| PG-ACTIVITY-DETAIL | ACT-005, ACT-008 |
+| PG-DELETED | ACT-008 |
 | PG-EXPIRATIONS | EXP-001, EXP-002, DSP-004, DSP-005 |
 | PG-EXPIRATIONS-RO | EXP-001. No manage button. |
 | PG-KITTING | KIT-001, KIT-002. KIT-003 is drawn and is not a working action. |
-| PG-SETTINGS | SET-001, SET-002, SET-003, ACC-008, ACC-009, ACC-010, ACC-011, ACC-012, ACC-013, TEAM-001, TEAM-002, TEAM-003, TEAM-004, CFL-001, CFL-002, CFL-003, CFL-004, CFL-005, CFL-006, DEF-001, DEF-002, API-001, API-002, LSW-001, DSP-001, DSP-002, DSP-003, DSP-004, DSP-005, DSP-006, DSP-007, ACCSET-001, ACCSET-002, SUB-001, SUB-002, SUB-004. DSP-008 is hidden and unwired. |
+| PG-SETTINGS | SET-001, SET-002, SET-003, ACC-008, ACC-009, ACC-010, ACC-011, ACC-012, ACC-013, TEAM-001, TEAM-002, TEAM-003, TEAM-004, CFL-001, CFL-002, CFL-003, CFL-004, CFL-005, CFL-006, DEF-001, DEF-002, API-001, API-002, LSW-001, DSP-001, DSP-002, DSP-003, DSP-004, DSP-005, DSP-006, DSP-007, DSP-009, ACCSET-001, ACCSET-002, SUB-001, SUB-002, SUB-004. DSP-008 is hidden and unwired. |
 | PG-MOBILE-HOME, PG-SHELL-MOBILE | XFR-012, MAP-043, XFR-008 |
 | PG-ADD | PED-010, PED-011 |
 | PG-IMPORT | PED-012, PED-013, PED-014 |
